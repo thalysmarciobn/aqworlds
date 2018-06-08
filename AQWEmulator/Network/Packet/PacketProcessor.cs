@@ -20,7 +20,7 @@ namespace AQWEmulator.Network.Packet
                 if (packethandlerattribs.Length <= 0) continue;
                 if (packethandlerattribs[0].Packet == null)
                 {
-                    WriteConsole.Info($"Packet {type} is handling an invalid code.,");
+                    WriteConsole.Info($"Packet {type} is handling an invalid code.");
                     continue;
                 }
                 if (Events.ContainsKey(packethandlerattribs[0].Packet))

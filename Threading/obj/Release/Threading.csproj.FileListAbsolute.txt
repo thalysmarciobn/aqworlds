@@ -1,6 +1,0 @@
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Threading\bin\Release\Threading.dll
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Threading\bin\Release\Threading.pdb
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Threading\obj\Release\Threading.csprojResolveAssemblyReference.cache
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Threading\obj\Release\Threading.csproj.CoreCompileInputs.cache
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Threading\obj\Release\Threading.dll
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Threading\obj\Release\Threading.pdb

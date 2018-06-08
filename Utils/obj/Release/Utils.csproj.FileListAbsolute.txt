@@ -1,5 +1,0 @@
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Utils\bin\Release\Utils.dll
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Utils\bin\Release\Utils.pdb
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Utils\obj\Release\Utils.csproj.CoreCompileInputs.cache
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Utils\obj\Release\Utils.dll
-C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\Utils\obj\Release\Utils.pdb
