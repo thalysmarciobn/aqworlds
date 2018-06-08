@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using AQWEmulator.Database.Models;
+using AQWEmulator.Network;
 using AQWEmulator.Network.Sessions;
 using AQWEmulator.Utils;
 using AQWEmulator.World.Rooms;
@@ -13,7 +14,7 @@ namespace AQWEmulator.World.Users
 {
     public class User
     {
-        public User(int id, string name, UserSession session, CharacterModel character)
+        public User(int id, string name, Socket session, CharacterModel character)
         {
             _targets = new List<object>();
             Id = id;
@@ -38,7 +39,7 @@ namespace AQWEmulator.World.Users
         public UserState UserState { get; }
         public UserStats UserStats { get; }
         public RoomUser RoomUser { get; }
-        private UserSession Channel { get; }
+        private Socket Channel { get; }
         public string Name { get; }
         public int Id { get; }
         public long PartyId { get; set; }
@@ -50,9 +51,7 @@ namespace AQWEmulator.World.Users
 
         public void Send(string message)
         {
-            Console.WriteLine("[SEND] : " + message);
-            var data = Encoding.UTF8.GetBytes(message + Convert.ToChar(0x0));
-            Channel.Send(data);
+            NetworkServer.SendData(Channel, Encoding.UTF8.GetBytes(message + Convert.ToChar(0x0)));
         }
 
         public bool ContainsTarget(object target)

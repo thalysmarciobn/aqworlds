@@ -23,8 +23,6 @@ namespace AQWEmulator
         private const int Minor = 14;
         private const int Build = 1;
 
-        private static NetworkServer _network;
-
         public static void Main(string[] args)
         {
             ThreadPool.SetMaxThreads(200, 200);
@@ -67,7 +65,7 @@ namespace AQWEmulator
                 Server.Instance.Cache();
                 PacketProcessor.Register();
                 WriteConsole.Info($"Game database {gameDatabaseUsed.Seconds} s, {gameDatabaseUsed.Milliseconds}");
-                _network = new NetworkServer().Build(new NetworkSettings()
+                NetworkServer.Start(new NetworkSettings()
                 {
                     Endpoint = new IPEndPoint(IPAddress.Any, 5588),
                     BufferSize = 1024,
@@ -75,8 +73,7 @@ namespace AQWEmulator
                     MaxSimultaneousAcceptOps = 512,
                     NumOfSaeaForRec = 5000,
                     NumOfSaeaForSend = 5000
-                }).Init();
-                _network.StartListen();
+                });
                 var used = DateTime.Now - start;
                 WriteConsole.Info($"Server started in {used.Seconds} s, {used.Milliseconds} ms on {_host}:{_port}");
                 while (true)

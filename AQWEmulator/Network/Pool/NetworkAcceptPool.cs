@@ -2,15 +2,21 @@
 using System.Collections.Concurrent;
 using System.Net.Sockets;
 
-namespace AQWEmulator.Network
+namespace AQWEmulator.Network.Pool
 {
-    internal sealed class SocketAsyncEventArgsPool
+    internal sealed class NetworkAcceptPool
     {
         private readonly ConcurrentStack<SocketAsyncEventArgs> _pool;
 
-        public SocketAsyncEventArgsPool(int capacity)
+        public NetworkAcceptPool(int capacity, EventHandler<SocketAsyncEventArgs> completed)
         {
             _pool = new ConcurrentStack<SocketAsyncEventArgs>();
+            for (var i = 0; i < capacity; i++)
+            {
+                var acceptEventArg = new SocketAsyncEventArgs();
+                acceptEventArg.Completed += completed;
+                _pool.Push(acceptEventArg);
+            }
         }
 
         public bool TryPop(out SocketAsyncEventArgs args)
@@ -24,7 +30,12 @@ namespace AQWEmulator.Network
             {
                 throw new ArgumentNullException("Items added to a SocketAsyncEventArgsPool cannot be null");
             }
-
+            lock (this)
+            {
+                args.AcceptSocket = null;
+                args.RemoteEndPoint = null;
+                args.DisconnectReuseSocket = true;
+            }
             _pool.Push(args);
         }
 

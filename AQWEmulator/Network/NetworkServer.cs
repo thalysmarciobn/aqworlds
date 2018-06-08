@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using AQWEmulator.Network.Pool;
 using AQWEmulator.Network.Sessions;
 using AQWEmulator.Settings;
 
@@ -9,70 +10,27 @@ namespace AQWEmulator.Network
 {
     public class NetworkServer
     {
-        private NetworkSettings _settings;
+        private static NetworkSettings _settings;
         
-        private BufferManager _bufferManager;
+        private static SemaphoreSlim _maxSaeaSendEnforcer;
+        private static SemaphoreSlim _maxAcceptOpsEnforcer;
         
-        private SemaphoreSlim _maxSaeaSendEnforcer;
-        private SemaphoreSlim _maxAcceptOpsEnforcer;
+        private static Socket _listenSocket;
         
-        private Socket _listenSocket;
-        
-        private SocketAsyncEventArgsPool _poolOfAcceptEventArgs;
-        private SocketAsyncEventArgsPool _poolOfRecEventArgs;
-        private SocketAsyncEventArgsPool _poolOfSendEventArgs;
+        private static NetworkAcceptPool _poolOfAcceptEventArgs;
+        private static NetworkReceivePool _poolOfRecEventArgs;
+        private static NetworkSendPool _poolOfSendEventArgs;
 
-        public NetworkServer Build(NetworkSettings settings)
+        public static void Start(NetworkSettings settings)
         {
             _settings = settings;
-            _bufferManager = new BufferManager((_settings.BufferSize * _settings.NumOfSaeaForRec) + (_settings.BufferSize * _settings.NumOfSaeaForSend), _settings.BufferSize);
-            _poolOfAcceptEventArgs = new SocketAsyncEventArgsPool(_settings.MaxSimultaneousAcceptOps);
-            _poolOfRecEventArgs = new SocketAsyncEventArgsPool(_settings.NumOfSaeaForRec);
-            _poolOfSendEventArgs = new SocketAsyncEventArgsPool(_settings.NumOfSaeaForSend);
+            _poolOfAcceptEventArgs = new NetworkAcceptPool(_settings.MaxSimultaneousAcceptOps, AcceptEventArg_Completed);
+            _poolOfRecEventArgs = new NetworkReceivePool(_settings.NumOfSaeaForRec, IO_ReceiveCompleted);
+            _poolOfSendEventArgs = new NetworkSendPool(_settings.NumOfSaeaForSend, IO_SendCompleted);
 
             _maxSaeaSendEnforcer = new SemaphoreSlim(_settings.NumOfSaeaForSend, _settings.NumOfSaeaForSend);
             _maxAcceptOpsEnforcer = new SemaphoreSlim(_settings.MaxSimultaneousAcceptOps, _settings.MaxSimultaneousAcceptOps);
-            return this;
-        }
-
-        public NetworkServer Init()
-        {
-            _bufferManager.InitBuffer();
-
-            for (var i = 0; i < _settings.MaxSimultaneousAcceptOps; i++)
-            {
-                var acceptEventArg = new SocketAsyncEventArgs();
-                acceptEventArg.Completed +=
-                    AcceptEventArg_Completed;
-
-                _poolOfAcceptEventArgs.Push(acceptEventArg);
-            }
-            for (var i = 0; i < _settings.NumOfSaeaForRec; i++)
-            {
-                var eventArgObjectForPool = new SocketAsyncEventArgs();
-                if (!_bufferManager.SetBuffer(eventArgObjectForPool)) continue;
-                eventArgObjectForPool.Completed +=
-                    IO_ReceiveCompleted;
-                eventArgObjectForPool.UserToken = new Session(i, this);
-                _poolOfRecEventArgs.Push(eventArgObjectForPool);
-            }
-
-            // send objects
-            for (var i = 0; i < _settings.NumOfSaeaForSend; i++)
-            {
-                var eventArgObjectForPool = new SocketAsyncEventArgs();
-                if (!_bufferManager.SetBuffer(eventArgObjectForPool)) continue;
-                eventArgObjectForPool.Completed +=
-                    IO_SendCompleted;
-                eventArgObjectForPool.UserToken = new SendDataToken();
-                _poolOfSendEventArgs.Push(eventArgObjectForPool);
-            }
-
-            return this;
-        }
-        
-        public void StartListen()
-        {
+            
             _listenSocket = new Socket(_settings.Endpoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             _listenSocket.Bind(_settings.Endpoint);
             _listenSocket.Listen(_settings.Backlog);
@@ -80,7 +38,7 @@ namespace AQWEmulator.Network
             StartAccept();
         }
         
-        private void StartAccept()
+        private static void StartAccept()
         {
             _maxAcceptOpsEnforcer.Wait();
 
@@ -99,12 +57,12 @@ namespace AQWEmulator.Network
             }
         }
         
-        private void AcceptEventArg_Completed(object sender, SocketAsyncEventArgs e)
+        private static void AcceptEventArg_Completed(object sender, SocketAsyncEventArgs e)
         {
             ProcessAccept(e);
         }
 
-        private void ProcessAccept(SocketAsyncEventArgs acceptEventArgs)
+        private static void ProcessAccept(SocketAsyncEventArgs acceptEventArgs)
         {
             StartAccept();
 
@@ -133,7 +91,7 @@ namespace AQWEmulator.Network
             }
         }
 
-        private void IO_SendCompleted(object sender, SocketAsyncEventArgs e)
+        private static void IO_SendCompleted(object sender, SocketAsyncEventArgs e)
         {
             if (e.LastOperation != SocketAsyncOperation.Send)
             {
@@ -143,7 +101,7 @@ namespace AQWEmulator.Network
             ProcessSend(e);
         }
 
-        private void IO_ReceiveCompleted(object sender, SocketAsyncEventArgs e)
+        private static void IO_ReceiveCompleted(object sender, SocketAsyncEventArgs e)
         {
             if (e.LastOperation != SocketAsyncOperation.Receive)
             {
@@ -153,7 +111,7 @@ namespace AQWEmulator.Network
             ProcessReceive(e);
         }
 
-        private void StartReceive(SocketAsyncEventArgs receiveEventArgs)
+        private static void StartReceive(SocketAsyncEventArgs receiveEventArgs)
         {
             var token = (Session)receiveEventArgs.UserToken;
 
@@ -165,7 +123,7 @@ namespace AQWEmulator.Network
             }
         }
 
-        private void ProcessReceive(SocketAsyncEventArgs receiveEventArgs)
+        private static void ProcessReceive(SocketAsyncEventArgs receiveEventArgs)
         {
             var token = (Session)receiveEventArgs.UserToken;
 
@@ -191,7 +149,7 @@ namespace AQWEmulator.Network
             }
         }
 
-        public void SendData(Socket socket, byte[] data)
+        public static void SendData(Socket socket, byte[] data)
         {
             _maxSaeaSendEnforcer.Wait();
             if (!_poolOfSendEventArgs.TryPop(out var sendEventArgs)) return;
@@ -203,7 +161,7 @@ namespace AQWEmulator.Network
             StartSend(sendEventArgs);
         }
 
-        private void StartSend(SocketAsyncEventArgs sendEventArgs)
+        private static void StartSend(SocketAsyncEventArgs sendEventArgs)
         {
             var token = (SendDataToken)sendEventArgs.UserToken;
 
@@ -226,7 +184,7 @@ namespace AQWEmulator.Network
             }
         }
 
-        private void ProcessSend(SocketAsyncEventArgs sendEventArgs)
+        private static void ProcessSend(SocketAsyncEventArgs sendEventArgs)
         {
             try
             {
@@ -273,12 +231,12 @@ namespace AQWEmulator.Network
             con.Disconnect();
         }
 
-        private void ReturnReceiveSaea(SocketAsyncEventArgs args)
+        private static void ReturnReceiveSaea(SocketAsyncEventArgs args)
         {
             _poolOfRecEventArgs.Push(args);
         }
 
-        private void ReturnSendSaea(SocketAsyncEventArgs args)
+        private static void ReturnSendSaea(SocketAsyncEventArgs args)
         {
             _poolOfSendEventArgs.Push(args);
             _maxSaeaSendEnforcer.Release();
@@ -299,7 +257,7 @@ namespace AQWEmulator.Network
         }
 
         [Obsolete]
-        public void Shutdown()
+        public static void Shutdown()
         {
             _listenSocket.Shutdown(SocketShutdown.Both);
             _listenSocket.Close();
@@ -307,7 +265,7 @@ namespace AQWEmulator.Network
             DisposeAllSaeaObjects();
         }
 
-        private void DisposeAllSaeaObjects()
+        private static void DisposeAllSaeaObjects()
         {
             _poolOfAcceptEventArgs.Dispose();
             _poolOfSendEventArgs.Dispose();

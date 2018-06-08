@@ -72,7 +72,6 @@
           <e p="PartyHelper.cs" t="Include" />
         </e>
         <e p="Network" t="Include">
-          <e p="BufferManager.cs" t="Include" />
           <e p="NetworkServer.cs" t="Include" />
           <e p="Packet" t="Include">
             <e p="Events" t="Include">
@@ -97,12 +96,15 @@
             <e p="PacketInAttribute.cs" t="Include" />
             <e p="PacketProcessor.cs" t="Include" />
           </e>
+          <e p="Pool" t="Include">
+            <e p="NetworkAcceptPool.cs" t="Include" />
+            <e p="NetworkReceivePool.cs" t="Include" />
+            <e p="NetworkSendPool.cs" t="Include" />
+          </e>
           <e p="SendDataToken.cs" t="Include" />
           <e p="Sessions" t="Include">
             <e p="Session.cs" t="Include" />
-            <e p="UserSession.cs" t="Include" />
           </e>
-          <e p="SocketAsyncEventArgsPool.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />

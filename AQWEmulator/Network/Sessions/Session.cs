@@ -23,17 +23,12 @@ namespace AQWEmulator.Network.Sessions
 
         private User _user;
         
-        public UserSession UserSession { get; private set; }
-
-        private readonly NetworkServer _networkServer;
-        
         public string Address => Socket.RemoteEndPoint.ToString().Split(':')[0];
 
-        public Session(int id, NetworkServer networkServer)
+        public Session(int id)
         {
             Id = id;
             Logged = false;
-            _networkServer = networkServer;
         }
 
         public void Disconnect()
@@ -41,7 +36,6 @@ namespace AQWEmulator.Network.Sessions
             if (!Logged) return;
             _user.RoomUser.Remove();
             UsersManager.Instance.Remove(_user);
-            UserSession = null;
             Logged = false;
         }
 
@@ -73,7 +67,7 @@ namespace AQWEmulator.Network.Sessions
             {
                 if (data.Equals("<policy-file-request/>" + Convert.ToChar(0x0)))
                 {
-                    Send(Encoding.UTF8.GetBytes(
+                    NetworkServer.SendData(Socket, Encoding.UTF8.GetBytes(
                         $"<cross-domain-policy><allow-access-from domain='*' to-ports='{5588}' /></cross-domain-policy>"
                         + Convert.ToChar(0x0)));
                 }
@@ -82,7 +76,7 @@ namespace AQWEmulator.Network.Sessions
                     var action = Xml.SelectSingleNode(data, "/msg/body/@action").Value;
                     if (action.Equals("verChk"))
                     {
-                        Send(Encoding.UTF8.GetBytes(
+                        NetworkServer.SendData(Socket, Encoding.UTF8.GetBytes(
                             "<msg t='sys'><body action='apiOK' r='0'></body></msg>" + Convert.ToChar(0x0)));
                     }
                     else if (action.Equals("login"))
@@ -107,8 +101,7 @@ namespace AQWEmulator.Network.Sessions
                                             .SingleOrDefault();
                                         if (character == null) return;
                                         Logged = true;
-                                        UserSession = new UserSession(this);
-                                        _user = UsersManager.Instance.AddAndGet(name, UserSession, character);
+                                        _user = UsersManager.Instance.AddAndGet(name, Socket, character);
                                         var access = new AccessLogModel
                                         {
                                             UserId = character.UserId,
@@ -162,7 +155,7 @@ namespace AQWEmulator.Network.Sessions
                                     }
                                     else
                                     {
-                                        Send(Encoding.UTF8.GetBytes(SmartFoxServer.Parse(new[]
+                                        NetworkServer.SendData(Socket, Encoding.UTF8.GetBytes(SmartFoxServer.Parse(new[]
                                         {
                                             "xt", "loginResponse", "-1", "false", "-1", name,
                                             $"User Data for {name} could not be retrieved. Please contact the staff to resolve the issue."
@@ -173,7 +166,7 @@ namespace AQWEmulator.Network.Sessions
                         }
                         else
                         {
-                            Send(Encoding.UTF8.GetBytes(SmartFoxServer.Parse(new[]
+                            NetworkServer.SendData(Socket, Encoding.UTF8.GetBytes(SmartFoxServer.Parse(new[]
                             {
                                 "xt", "loginResponse", "-1", "false", "-1", name,
                                 $"User Data for {name} could not be retrieved. Please contact the staff to resolve the issue."
@@ -188,11 +181,6 @@ namespace AQWEmulator.Network.Sessions
             }
 
             //Console.WriteLine(data);
-        }
-
-        public void Send(byte[] data)
-        {
-            _networkServer.SendData(Socket, data);
         }
     }
 }

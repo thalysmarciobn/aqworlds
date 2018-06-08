@@ -66,3 +66,12 @@ C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\JSON\obj\Debug\JSON.csproj.Cor
 C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\JSON\obj\Debug\JSON.csproj.CopyComplete
 C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\JSON\obj\Debug\JSON.dll
 C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\JSON\obj\Debug\JSON.pdb
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\bin\Debug\JSON.dll
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\bin\Debug\JSON.pdb
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\bin\Debug\Newtonsoft.Json.dll
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\bin\Debug\Newtonsoft.Json.xml
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.csprojResolveAssemblyReference.cache
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.csproj.CoreCompileInputs.cache
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.csproj.CopyComplete
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.dll
+C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.pdb
