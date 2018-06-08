@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\thaly\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_AQWEmulator.1431822522.00" t="ExcludeRecursive" />
-    <e p="C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator" t="IncludeFlat">
+    <e p="C:\Users\thaly\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_AQWEmulator.177390371.00" t="ExcludeRecursive" />
+    <e p="C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds" t="IncludeFlat">
       <e p="AQWEmulator" t="IncludeRecursive">
         <e p="AQWEmulator.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
