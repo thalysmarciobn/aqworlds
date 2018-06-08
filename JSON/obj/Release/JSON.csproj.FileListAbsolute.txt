@@ -1,0 +1,8 @@
+C:\Users\ithalys\Dropbox\BitBucket\CSharp\HikariEMU\JSON\JSON\bin\Release\JSON.dll
+C:\Users\ithalys\Dropbox\BitBucket\CSharp\HikariEMU\JSON\JSON\bin\Release\JSON.pdb
+C:\Users\ithalys\Dropbox\BitBucket\CSharp\HikariEMU\JSON\JSON\bin\Release\Newtonsoft.Json.dll
+C:\Users\ithalys\Dropbox\BitBucket\CSharp\HikariEMU\JSON\JSON\bin\Release\Newtonsoft.Json.xml
+C:\Users\ithalys\Dropbox\BitBucket\CSharp\HikariEMU\JSON\JSON\obj\Release\JSON.csprojResolveAssemblyReference.cache
+C:\Users\ithalys\Dropbox\BitBucket\CSharp\HikariEMU\JSON\JSON\obj\Release\JSON.csproj.CoreCompileInputs.cache
+C:\Users\ithalys\Dropbox\BitBucket\CSharp\HikariEMU\JSON\JSON\obj\Release\JSON.dll
+C:\Users\ithalys\Dropbox\BitBucket\CSharp\HikariEMU\JSON\JSON\obj\Release\JSON.pdb

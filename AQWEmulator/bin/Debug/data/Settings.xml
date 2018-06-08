@@ -1,0 +1,28 @@
+<hikari serverID="2">
+	<sql>
+		<host>192.99.195.191</host>
+		<username>postgres</username>
+		<password>3251tha</password>
+		<database>nemesis</database>
+		<port>5432</port>
+	</sql>
+	<limits>
+		<gold>4000000</gold>
+		<coin>4000000</coin>
+	</limits>
+	<rates>
+		<gold>1</gold>
+		<coin>1</coin>
+		<experience>1</experience>
+		<reputation>1</reputation>
+		<class>1</class>
+	</rates>
+	<network boss="4" worker="4">
+		<host>*</host>
+		<port>5090</port>
+		<backlog>100</backlog>
+		<recvbuf>1024</recvbuf>
+		<keepalive>true</keepalive>
+		<tcpnodelay>true</tcpnodelay>
+	</network>
+</hikari>

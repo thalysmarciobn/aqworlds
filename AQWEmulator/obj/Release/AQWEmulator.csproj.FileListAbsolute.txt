@@ -1,0 +1,6 @@
+C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\AQWEmulator\bin\Release\AQWEmulator.exe
+C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\AQWEmulator\bin\Release\AQWEmulator.pdb
+C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\AQWEmulator\obj\Release\AQWEmulator.csprojResolveAssemblyReference.cache
+C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\AQWEmulator\obj\Release\AQWEmulator.csproj.CoreCompileInputs.cache
+C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\AQWEmulator\obj\Release\AQWEmulator.exe
+C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator\AQWEmulator\obj\Release\AQWEmulator.pdb

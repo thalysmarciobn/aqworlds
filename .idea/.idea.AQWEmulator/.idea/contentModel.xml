@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\thaly\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_AQWEmulator.1431822522.00" t="ExcludeRecursive" />
+    <e p="C:\Users\thaly\OneDrive\sourcetree\C#\AQWEmulator" t="IncludeFlat">
+      <e p="AQWEmulator" t="IncludeRecursive">
+        <e p="AQWEmulator.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Combat" t="Include">
+          <e p="AbstractState.cs" t="Include" />
+          <e p="DamageEval.cs" t="Include" />
+          <e p="DamageType.cs" t="Include" />
+          <e p="ElementalType.cs" t="Include" />
+          <e p="GarParser.cs" t="Include" />
+          <e p="ItemType.cs" t="Include" />
+          <e p="Stats.cs" t="Include" />
+        </e>
+        <e p="Database" t="Include">
+          <e p="GameFactory.cs" t="Include" />
+          <e p="IModel.cs" t="Include" />
+          <e p="Maps" t="Include">
+            <e p="AccessLogMap.cs" t="Include" />
+            <e p="AlertLogMap.cs" t="Include" />
+            <e p="AreaMap.cs" t="Include" />
+            <e p="AreaMonsterMap.cs" t="Include" />
+            <e p="CharacterItemMap.cs" t="Include" />
+            <e p="CharacterMap.cs" t="Include" />
+            <e p="ClassSkillMap.cs" t="Include" />
+            <e p="EnhancementMap.cs" t="Include" />
+            <e p="FactionMap.cs" t="Include" />
+            <e p="HairMap.cs" t="Include" />
+            <e p="ItemClassMap.cs" t="Include" />
+            <e p="ItemMap.cs" t="Include" />
+            <e p="MonsterMap.cs" t="Include" />
+            <e p="PatternMap.cs" t="Include" />
+            <e p="ServerMap.cs" t="Include" />
+            <e p="ShopItemMap.cs" t="Include" />
+            <e p="ShopMap.cs" t="Include" />
+            <e p="SkillAuraMap.cs" t="Include" />
+            <e p="SkillMap.cs" t="Include" />
+            <e p="UserMap.cs" t="Include" />
+          </e>
+          <e p="Models" t="Include">
+            <e p="AccessLogModel.cs" t="Include" />
+            <e p="AlertLogModel.cs" t="Include" />
+            <e p="AreaModel.cs" t="Include" />
+            <e p="AreaMonsterModel.cs" t="Include" />
+            <e p="CharacterItemModel.cs" t="Include" />
+            <e p="CharacterModel.cs" t="Include" />
+            <e p="ClassSkillModel.cs" t="Include" />
+            <e p="EnhancementModel.cs" t="Include" />
+            <e p="FactionModel.cs" t="Include" />
+            <e p="HairModel.cs" t="Include" />
+            <e p="ItemClassModel.cs" t="Include" />
+            <e p="ItemModel.cs" t="Include" />
+            <e p="MonsterModel.cs" t="Include" />
+            <e p="PatternModel.cs" t="Include" />
+            <e p="ServerModel.cs" t="Include" />
+            <e p="ShopItemModel.cs" t="Include" />
+            <e p="ShopModel.cs" t="Include" />
+            <e p="SkillAuraEffectModel.cs" t="Include" />
+            <e p="SkillAuraModel.cs" t="Include" />
+            <e p="SkillModel.cs" t="Include" />
+            <e p="UserModel.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Emulator.cs" t="Include" />
+        <e p="Helper" t="Include">
+          <e p="JsonHelper.cs" t="Include" />
+          <e p="NetworkHandler.cs" t="Include" />
+          <e p="NetworkHelper.cs" t="Include" />
+          <e p="PartyHelper.cs" t="Include" />
+        </e>
+        <e p="Network" t="Include">
+          <e p="BufferManager.cs" t="Include" />
+          <e p="NetworkServer.cs" t="Include" />
+          <e p="Packet" t="Include">
+            <e p="Events" t="Include">
+              <e p="AwayFromKeyboard.cs" t="Include" />
+              <e p="Command.cs" t="Include" />
+              <e p="EmoteAction.cs" t="Include" />
+              <e p="FirstJoin.cs" t="Include" />
+              <e p="GetActionResult.cs" t="Include" />
+              <e p="IsModerator.cs" t="Include" />
+              <e p="LoadShop.cs" t="Include" />
+              <e p="Message.cs" t="Include" />
+              <e p="Move.cs" t="Include" />
+              <e p="MoveToCell.cs" t="Include" />
+              <e p="RestorePlayerTimed.cs" t="Include" />
+              <e p="RestRequest.cs" t="Include" />
+              <e p="RetrieveInventory.cs" t="Include" />
+              <e p="RetrieveUserData.cs" t="Include" />
+              <e p="RetrieveUserDatas.cs" t="Include" />
+              <e p="Whisper.cs" t="Include" />
+            </e>
+            <e p="IPacketHandler.cs" t="Include" />
+            <e p="PacketInAttribute.cs" t="Include" />
+            <e p="PacketProcessor.cs" t="Include" />
+          </e>
+          <e p="SendDataToken.cs" t="Include" />
+          <e p="Sessions" t="Include">
+            <e p="Session.cs" t="Include" />
+            <e p="UserSession.cs" t="Include" />
+          </e>
+          <e p="SocketAsyncEventArgsPool.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Settings" t="Include">
+          <e p="NetworkSettings.cs" t="Include" />
+          <e p="ServerSettings.cs" t="Include" />
+          <e p="SessionSettings.cs" t="Include" />
+        </e>
+        <e p="Threading" t="Include">
+          <e p="AbstractThread.cs" t="Include" />
+          <e p="ThreadHelper.cs" t="Include" />
+        </e>
+        <e p="Utils" t="Include">
+          <e p="AQW" t="Include">
+            <e p="ItemStats.cs" t="Include" />
+            <e p="Preference.cs" t="Include" />
+          </e>
+          <e p="Exceptions" t="Include">
+            <e p="FileNotFound.cs" t="Include" />
+          </e>
+          <e p="Files" t="Include">
+            <e p="Xml.cs" t="Include" />
+          </e>
+          <e p="Indent.cs" t="Include" />
+          <e p="Log" t="Include">
+            <e p="WriteConsole.cs" t="Include" />
+          </e>
+          <e p="PLockedList.cs" t="Include" />
+          <e p="RoundTens.cs" t="Include" />
+          <e p="SmartFoxServer.cs" t="Include" />
+          <e p="Token.cs" t="Include" />
+        </e>
+        <e p="World" t="Include">
+          <e p="Core" t="Include">
+            <e p="CoreExpToLevel.cs" t="Include" />
+            <e p="ServerCoreValues.cs" t="Include" />
+          </e>
+          <e p="Parties" t="Include">
+            <e p="PartyInfo.cs" t="Include" />
+          </e>
+          <e p="Rooms" t="Include">
+            <e p="Room.cs" t="Include" />
+            <e p="RoomMonster.cs" t="Include" />
+            <e p="RoomMonsterManager.cs" t="Include" />
+            <e p="RoomMonsterState.cs" t="Include" />
+            <e p="RoomUser.cs" t="Include" />
+            <e p="RoomUserManager.cs" t="Include" />
+          </e>
+          <e p="RoomsManager.cs" t="Include" />
+          <e p="Server.cs" t="Include" />
+          <e p="Threads" t="Include">
+            <e p="Monster_MonsterAttack.cs" t="Include" />
+            <e p="MonsterRegeneration.cs" t="Include" />
+            <e p="MonsterRespawn.cs" t="Include" />
+            <e p="UserRegeneration.cs" t="Include" />
+          </e>
+          <e p="Users" t="Include">
+            <e p="User.cs" t="Include" />
+            <e p="UserClass.cs" t="Include" />
+            <e p="UserState.cs" t="Include" />
+            <e p="UserStats.cs" t="Include" />
+          </e>
+          <e p="UsersManager.cs" t="Include" />
+        </e>
+      </e>
+      <e p="AQWEmulator.sln" t="IncludeFlat" />
+      <e p="JSON" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BPacket.cs" t="Include" />
+        <e p="Command" t="Include">
+          <e p="JsonAddGoldExp.cs" t="Include" />
+          <e p="JsonCt.cs" t="Include" />
+          <e p="JsonEnhp.cs" t="Include" />
+          <e p="JsonEquipItem.cs" t="Include" />
+          <e p="JsonFirstJoin.cs" t="Include" />
+          <e p="JsonInitUserData.cs" t="Include" />
+          <e p="JsonInitUserDatas.cs" t="Include" />
+          <e p="JsonIsModerator.cs" t="Include" />
+          <e p="JsonLevelUp.cs" t="Include" />
+          <e p="JsonLoadInventoryBig.cs" t="Include" />
+          <e p="JsonLoadShop.cs" t="Include" />
+          <e p="JsonMoveToArea.cs" t="Include" />
+          <e p="JsonMtls.cs" t="Include" />
+          <e p="JsonPartyInvite.cs" t="Include" />
+          <e p="JsonStu.cs" t="Include" />
+          <e p="JsonUotls.cs" t="Include" />
+        </e>
+        <e p="IBPacket.cs" t="Include" />
+        <e p="IJsonPacket.cs" t="Include" />
+        <e p="JSON.csproj" t="IncludeRecursive" />
+        <e p="JsonPacket.cs" t="Include" />
+        <e p="Model" t="Include">
+          <e p="JsonGarActionResult.cs" t="Include" />
+          <e p="JsonGarAnims.cs" t="Include" />
+          <e p="JsonGarResult.cs" t="Include" />
+          <e p="JsonGarSara.cs" t="Include" />
+          <e p="JsonGarSarsa.cs" t="Include" />
+          <e p="JsonItem.cs" t="Include" />
+          <e p="JsonMonBranch.cs" t="Include" />
+          <e p="JsonMonMap.cs" t="Include" />
+          <e p="JsonMonsterDefinition.cs" t="Include" />
+          <e p="JsonPattern.cs" t="Include" />
+          <e p="JsonShopInfo.cs" t="Include" />
+          <e p="JsonState.cs" t="Include" />
+          <e p="JsonStuSta.cs" t="Include" />
+          <e p="JsonStuTempSta.cs" t="Include" />
+          <e p="JsonStuTempStaInnate.cs" t="Include" />
+          <e p="JsonUoBranch.cs" t="Include" />
+          <e p="JsonUserData.cs" t="Include" />
+          <e p="JsonUserEquipment.cs" t="Include" />
+          <e p="JsonUserInfo.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

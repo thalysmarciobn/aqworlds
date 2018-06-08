@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E184F3DC-DABE-403A-A2E8-6A1BE983A59B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JSON</RootNamespace>
+    <AssemblyName>JSON</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BPacket.cs" />
+    <Compile Include="Command\JsonAddGoldExp.cs" />
+    <Compile Include="Command\JsonCt.cs" />
+    <Compile Include="Command\JsonEnhp.cs" />
+    <Compile Include="Command\JsonEquipItem.cs" />
+    <Compile Include="Command\JsonFirstJoin.cs" />
+    <Compile Include="Command\JsonInitUserData.cs" />
+    <Compile Include="Command\JsonInitUserDatas.cs" />
+    <Compile Include="Command\JsonIsModerator.cs" />
+    <Compile Include="Command\JsonLevelUp.cs" />
+    <Compile Include="Command\JsonLoadInventoryBig.cs" />
+    <Compile Include="Command\JsonLoadShop.cs" />
+    <Compile Include="Command\JsonMoveToArea.cs" />
+    <Compile Include="Command\JsonMtls.cs" />
+    <Compile Include="Command\JsonPartyInvite.cs" />
+    <Compile Include="Command\JsonStu.cs" />
+    <Compile Include="Command\JsonUotls.cs" />
+    <Compile Include="IBPacket.cs" />
+    <Compile Include="IJsonPacket.cs" />
+    <Compile Include="Model\JsonGarActionResult.cs" />
+    <Compile Include="Model\JsonGarAnims.cs" />
+    <Compile Include="Model\JsonGarResult.cs" />
+    <Compile Include="Model\JsonGarSara.cs" />
+    <Compile Include="Model\JsonGarSarsa.cs" />
+    <Compile Include="Model\JsonItem.cs" />
+    <Compile Include="Model\JsonMonBranch.cs" />
+    <Compile Include="Model\JsonMonMap.cs" />
+    <Compile Include="Model\JsonMonsterDefinition.cs" />
+    <Compile Include="Model\JsonPattern.cs" />
+    <Compile Include="Model\JsonShopInfo.cs" />
+    <Compile Include="Model\JsonState.cs" />
+    <Compile Include="Model\JsonStuSta.cs" />
+    <Compile Include="Model\JsonStuTempSta.cs" />
+    <Compile Include="Model\JsonStuTempStaInnate.cs" />
+    <Compile Include="Model\JsonUoBranch.cs" />
+    <Compile Include="Model\JsonUserData.cs" />
+    <Compile Include="Model\JsonUserEquipment.cs" />
+    <Compile Include="Model\JsonUserInfo.cs" />
+    <Compile Include="JsonPacket.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
