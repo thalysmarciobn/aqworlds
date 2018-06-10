@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AQWEmulator.Attributes;
 using AQWEmulator.Helper;
 using AQWEmulator.Utils;
 using AQWEmulator.World.Users;

@@ -18,7 +18,7 @@
 		<class>1</class>
 	</rates>
 	<network MaxSimultaneousAcceptOps="512" NumOfSaeaForRec="24" NumOfSaeaForSend="24">
-		<limit>5</limit>
+		<limit>10000</limit>
 		<host>127.0.0.1</host>
 		<port>5588</port>
 		<backlog>2</backlog>

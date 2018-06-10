@@ -6,7 +6,6 @@ using AQWEmulator.Network.Packet;
 using AQWEmulator.Network.Pool;
 using AQWEmulator.Network.Sessions;
 using AQWEmulator.Settings;
-using AQWEmulator.Utils;
 using AQWEmulator.Utils.Log;
 using AQWEmulator.World;
 using AQWEmulator.World.Users;
@@ -82,7 +81,6 @@ namespace AQWEmulator.Network
         {
             StartAccept();
 
-            _maxConnectionsEnforcer.Wait();
             if (acceptEventArgs.SocketError != SocketError.Success)
             {
                 HandleBadAccept(acceptEventArgs);
@@ -303,7 +301,7 @@ namespace AQWEmulator.Network
 
         private void HandleBadAccept(SocketAsyncEventArgs acceptEventArgs)
         {
-            //_poolOfAcceptEventArgs.Push(acceptEventArgs);
+            _poolOfAcceptEventArgs.Push(acceptEventArgs);
             try
             {
                 acceptEventArgs.AcceptSocket.Shutdown(SocketShutdown.Both);

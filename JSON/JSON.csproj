@@ -48,10 +48,12 @@
   <ItemGroup>
     <Compile Include="BPacket.cs" />
     <Compile Include="Command\JsonAddGoldExp.cs" />
+    <Compile Include="Command\JsonChangeColor.cs" />
     <Compile Include="Command\JsonCt.cs" />
     <Compile Include="Command\JsonEnhp.cs" />
     <Compile Include="Command\JsonEquipItem.cs" />
     <Compile Include="Command\JsonFirstJoin.cs" />
+    <Compile Include="Command\JsonGenderSwap.cs" />
     <Compile Include="Command\JsonInitUserData.cs" />
     <Compile Include="Command\JsonInitUserDatas.cs" />
     <Compile Include="Command\JsonIsModerator.cs" />

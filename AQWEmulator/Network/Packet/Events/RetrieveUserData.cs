@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using AQWEmulator.Attributes;
 using AQWEmulator.Helper;
 using AQWEmulator.World;
 using AQWEmulator.World.Users;

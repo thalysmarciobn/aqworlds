@@ -1,4 +1,5 @@
-﻿using AQWEmulator.World;
+﻿using AQWEmulator.Attributes;
+using AQWEmulator.World;
 using AQWEmulator.World.Users;
 
 namespace AQWEmulator.Network.Packet.Events

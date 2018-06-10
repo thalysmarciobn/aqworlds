@@ -4,12 +4,12 @@ using AQWEmulator.World.Users;
 
 namespace AQWEmulator.Network.Packet.Events
 {
-    [PacketIn("emotea")]
-    public class EmoteAction : IPacketHandler
+    [PacketIn("cc")]
+    public class CannedChat : IPacketHandler
     {
         public void Dispatch(User user, int room, string[] parameters)
         {
-            NetworkHelper.SendResponseToOthers(new[] {"xt", "emotea", parameters[0], user.Id.ToString()}, user.RoomUser);
+            NetworkHelper.SendResponse(new[] {"xt", "cc", "-1", parameters[0], user.Name}, user);
         }
     }
 }

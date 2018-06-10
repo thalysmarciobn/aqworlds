@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
+using AQWEmulator.Attributes;
 using AQWEmulator.Utils.Log;
 using AQWEmulator.World.Users;
 

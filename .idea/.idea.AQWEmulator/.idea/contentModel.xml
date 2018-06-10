@@ -74,21 +74,28 @@
           <e p="NetworkServer.cs" t="Include" />
           <e p="Packet" t="Include">
             <e p="Events" t="Include">
+              <e p="AggroMonster.cs" t="Include" />
               <e p="AwayFromKeyboard.cs" t="Include" />
+              <e p="CannedChat.cs" t="Include" />
+              <e p="ChangeColor.cs" t="Include" />
               <e p="Command.cs" t="Include" />
               <e p="EmoteAction.cs" t="Include" />
+              <e p="EmoteMessage.cs" t="Include" />
               <e p="FirstJoin.cs" t="Include" />
+              <e p="GenderSwap.cs" t="Include" />
               <e p="GetActionResult.cs" t="Include" />
               <e p="IsModerator.cs" t="Include" />
               <e p="LoadShop.cs" t="Include" />
               <e p="Message.cs" t="Include" />
               <e p="Move.cs" t="Include" />
               <e p="MoveToCell.cs" t="Include" />
+              <e p="MoveToCellById.cs" t="Include" />
               <e p="RestorePlayerTimed.cs" t="Include" />
               <e p="RestRequest.cs" t="Include" />
               <e p="RetrieveInventory.cs" t="Include" />
               <e p="RetrieveUserData.cs" t="Include" />
               <e p="RetrieveUserDatas.cs" t="Include" />
+              <e p="TrapDoor.cs" t="Include" />
               <e p="Whisper.cs" t="Include" />
             </e>
             <e p="IPacketHandler.cs" t="Include" />
@@ -179,10 +186,12 @@
         <e p="BPacket.cs" t="Include" />
         <e p="Command" t="Include">
           <e p="JsonAddGoldExp.cs" t="Include" />
+          <e p="JsonChangeColor.cs" t="Include" />
           <e p="JsonCt.cs" t="Include" />
           <e p="JsonEnhp.cs" t="Include" />
           <e p="JsonEquipItem.cs" t="Include" />
           <e p="JsonFirstJoin.cs" t="Include" />
+          <e p="JsonGenderSwap.cs" t="Include" />
           <e p="JsonInitUserData.cs" t="Include" />
           <e p="JsonInitUserDatas.cs" t="Include" />
           <e p="JsonIsModerator.cs" t="Include" />

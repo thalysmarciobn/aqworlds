@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AQWEmulator.Network.Packet
+namespace AQWEmulator.Attributes
 {
     internal class PacketInAttribute : Attribute
     {

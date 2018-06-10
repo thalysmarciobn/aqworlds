@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AQWEmulator.Attributes;
 using AQWEmulator.Combat;
 using AQWEmulator.Database;
 using AQWEmulator.Database.Models;

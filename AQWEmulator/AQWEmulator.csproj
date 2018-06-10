@@ -89,6 +89,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\PacketInAttribute.cs" />
     <Compile Include="Combat\AbstractState.cs" />
     <Compile Include="Combat\DamageEval.cs" />
     <Compile Include="Combat\DamageType.cs" />
@@ -144,24 +145,30 @@
     <Compile Include="Helper\NetworkHelper.cs" />
     <Compile Include="Helper\PartyHelper.cs" />
     <Compile Include="Network\NetworkServer.cs" />
+    <Compile Include="Network\Packet\Events\AggroMonster.cs" />
     <Compile Include="Network\Packet\Events\AwayFromKeyboard.cs" />
+    <Compile Include="Network\Packet\Events\CannedChat.cs" />
+    <Compile Include="Network\Packet\Events\ChangeColor.cs" />
     <Compile Include="Network\Packet\Events\Command.cs" />
     <Compile Include="Network\Packet\Events\EmoteAction.cs" />
+    <Compile Include="Network\Packet\Events\EmoteMessage.cs" />
     <Compile Include="Network\Packet\Events\FirstJoin.cs" />
+    <Compile Include="Network\Packet\Events\GenderSwap.cs" />
     <Compile Include="Network\Packet\Events\GetActionResult.cs" />
     <Compile Include="Network\Packet\Events\IsModerator.cs" />
     <Compile Include="Network\Packet\Events\LoadShop.cs" />
     <Compile Include="Network\Packet\Events\Message.cs" />
     <Compile Include="Network\Packet\Events\Move.cs" />
     <Compile Include="Network\Packet\Events\MoveToCell.cs" />
+    <Compile Include="Network\Packet\Events\MoveToCellById.cs" />
     <Compile Include="Network\Packet\Events\RestorePlayerTimed.cs" />
     <Compile Include="Network\Packet\Events\RestRequest.cs" />
     <Compile Include="Network\Packet\Events\RetrieveInventory.cs" />
     <Compile Include="Network\Packet\Events\RetrieveUserData.cs" />
     <Compile Include="Network\Packet\Events\RetrieveUserDatas.cs" />
+    <Compile Include="Network\Packet\Events\TrapDoor.cs" />
     <Compile Include="Network\Packet\Events\Whisper.cs" />
     <Compile Include="Network\Packet\IPacketHandler.cs" />
-    <Compile Include="Network\Packet\PacketInAttribute.cs" />
     <Compile Include="Network\Packet\PacketProcessor.cs" />
     <Compile Include="Network\Pool\NetworkAcceptPool.cs" />
     <Compile Include="Network\Pool\NetworkReceivePool.cs" />

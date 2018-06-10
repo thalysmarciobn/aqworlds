@@ -1,4 +1,5 @@
 ﻿using System;
+using AQWEmulator.Attributes;
 using AQWEmulator.Helper;
 using AQWEmulator.World.Users;
 using JSON;
