@@ -15,50 +15,36 @@ namespace AQWEmulator.Network.Sessions
 {
     public class Session
     {
-        private int Id { get; }
-        
-        public bool Logged { get; private set; }
-        
-        public Socket Socket { get; set; }
+        private readonly SocketAsyncEventArgs _acceptEventArg;
 
-        private User _user;
-        
-        public string Address => Socket.RemoteEndPoint.ToString().Split(':')[0];
+        private readonly NetworkServer _networkServer;
 
-        public Session(int id)
+        private readonly Socket _socket;
+        
+        public string Address => _socket.RemoteEndPoint.ToString().Split(':')[0];
+
+        public Session(SocketAsyncEventArgs acceptEventArg, Socket socket, NetworkServer networkServer)
         {
-            Id = id;
-            Logged = false;
+            _acceptEventArg = acceptEventArg;
+            _socket = socket;
+            _networkServer = networkServer;
         }
 
-        public void Disconnect()
+        public void Send(string message)
         {
-            if (!Logged) return;
-            _user.RoomUser.Remove();
-            UsersManager.Instance.Remove(_user);
-            Logged = false;
+            Console.WriteLine(message);
+            _networkServer.SendData(_socket, Encoding.UTF8.GetBytes(message + Convert.ToChar(0x0)));
         }
 
-        public void UserReceive(string packet)
+        public void Shutdown()
         {
-            var dataArray = packet.Substring(0, packet.Length - 1).Split(Convert.ToChar(0x0));
-            foreach (var message in dataArray)
-            {
-                var _params = message.Substring(1, message.Length - 2).Split('%');
-                if (_params.Length <= 3) return;
-                var newParams = new string[_params.Length - 4];
-                if (!_params[0].Equals("xt") || !_params[1].Equals("zm")) return;
-                var cmd = _params[2];
-                if (!int.TryParse(_params[3], out var room)) room = 0;
-                Array.Copy(_params, 4, newParams, 0, _params.Length - 4);
-                PacketProcessor.TryHandlePacket(_user, cmd, room, newParams);
-                //if (TryGet(cmd, out var packetEvent))
-                //    packetEvent.Dispatch(user, room, newParams);
-                //else if (TryGetCustom(cmd, out var custom))
-                //    custom.Parser(user, room, newParams);
-                //else
-                //    Console.WriteLine($"[{user.Name}] Packet not found: {cmd}");
-            }
+            _socket.Shutdown(SocketShutdown.Both);
+            _socket.Close();
+        }
+
+        public bool ReceiveAsync(SocketAsyncEventArgs receiveEventArgs)
+        {
+            return _socket.ReceiveAsync(receiveEventArgs);
         }
 
         public void Receive(string data)
@@ -67,17 +53,14 @@ namespace AQWEmulator.Network.Sessions
             {
                 if (data.Equals("<policy-file-request/>" + Convert.ToChar(0x0)))
                 {
-                    NetworkServer.SendData(Socket, Encoding.UTF8.GetBytes(
-                        $"<cross-domain-policy><allow-access-from domain='*' to-ports='{5588}' /></cross-domain-policy>"
-                        + Convert.ToChar(0x0)));
+                    Send($"<cross-domain-policy><allow-access-from domain='*' to-ports='{Emulator.GamePort}' /></cross-domain-policy>");
                 }
                 else if (Xml.IsValidXml(data))
                 {
                     var action = Xml.SelectSingleNode(data, "/msg/body/@action").Value;
                     if (action.Equals("verChk"))
                     {
-                        NetworkServer.SendData(Socket, Encoding.UTF8.GetBytes(
-                            "<msg t='sys'><body action='apiOK' r='0'></body></msg>" + Convert.ToChar(0x0)));
+                        Send("<msg t='sys'><body action='apiOK' r='0'></body></msg>");
                     }
                     else if (action.Equals("login"))
                     {
@@ -100,8 +83,7 @@ namespace AQWEmulator.Network.Sessions
                                             .Where(x => x.UserId == userModel.Id).Where(x => x.Token == hash)
                                             .SingleOrDefault();
                                         if (character == null) return;
-                                        Logged = true;
-                                        _user = UsersManager.Instance.AddAndGet(name, Socket, character);
+                                        var user = UsersManager.Instance.AddAndGet(name, this, character);
                                         var access = new AccessLogModel
                                         {
                                             UserId = character.UserId,
@@ -111,7 +93,7 @@ namespace AQWEmulator.Network.Sessions
                                         };
                                         session.Save(access);
                                         transaction.Commit();
-                                        _user.Character.Token = "Nemesis-" + Token.Create(32);
+                                        user.Character.Token = "Nemesis-" + Token.Create(32);
                                         character.Address = Address;
                                         //character.Country = Emulator.GeoIP.GetCountryCode(context.Channel.IpAddress);
                                         session.Update(character);
@@ -119,58 +101,59 @@ namespace AQWEmulator.Network.Sessions
                                         NetworkHelper.SendResponse(
                                             Preference.Is(Indent.Preference.Party, character.Settings)
                                                 ? new[] {"xt", "server", "-1", Indent.Message.PartyOn}
-                                                : new[] {"xt", "warning", "-1", Indent.Message.PartyOff}, _user);
+                                                : new[] {"xt", "warning", "-1", Indent.Message.PartyOff}, user);
                                         NetworkHelper.SendResponse(
                                             Preference.Is(Indent.Preference.Goto, character.Settings)
                                                 ? new[] {"xt", "server", "-1", Indent.Message.GotoOn}
-                                                : new[] {"xt", "server", "-1", Indent.Message.GotoOff}, _user);
+                                                : new[] {"xt", "server", "-1", Indent.Message.GotoOff}, user);
                                         NetworkHelper.SendResponse(
                                             Preference.Is(Indent.Preference.Friend, character.Settings)
                                                 ? new[] {"xt", "server", "-1", Indent.Message.FriendOn}
-                                                : new[] {"xt", "server", "-1", Indent.Message.FriendOff}, _user);
+                                                : new[] {"xt", "server", "-1", Indent.Message.FriendOff}, user);
                                         NetworkHelper.SendResponse(
                                             Preference.Is(Indent.Preference.Whisper, character.Settings)
                                                 ? new[] {"xt", "server", "-1", Indent.Message.WhisperOn}
-                                                : new[] {"xt", "server", "-1", Indent.Message.WhisperOff}, _user);
+                                                : new[] {"xt", "server", "-1", Indent.Message.WhisperOff}, user);
                                         NetworkHelper.SendResponse(
                                             Preference.Is(Indent.Preference.Tooltips, character.Settings)
                                                 ? new[] {"xt", "server", "-1", Indent.Message.TooltipsOn}
-                                                : new[] {"xt", "server", "-1", Indent.Message.TooltipsOff}, _user);
+                                                : new[] {"xt", "server", "-1", Indent.Message.TooltipsOff}, user);
                                         NetworkHelper.SendResponse(
                                             Preference.Is(Indent.Preference.Duel, character.Settings)
                                                 ? new[] {"xt", "server", "-1", Indent.Message.DuelOn}
-                                                : new[] {"xt", "server", "-1", Indent.Message.DuelOff}, _user);
+                                                : new[] {"xt", "server", "-1", Indent.Message.DuelOff}, user);
                                         NetworkHelper.SendResponse(
                                             Preference.Is(Indent.Preference.Guild, character.Settings)
                                                 ? new[] {"xt", "server", "-1", Indent.Message.GuildOn}
-                                                : new[] {"xt", "server", "-1", Indent.Message.GuildOff}, _user);
+                                                : new[] {"xt", "server", "-1", Indent.Message.GuildOff}, user);
                                         NetworkHelper.SendResponse(
                                             new[]
                                             {
-                                                "xt", "loginResponse", "-1", "true", _user.Id.ToString(), _user.Name,
+                                                "xt", "loginResponse", "-1", "true", user.Id.ToString(), user.Name,
                                                 "MOTD",
                                                 DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm:ss"),
                                                 Server.Instance.SettingsBuilder.ToString()
-                                            }, _user);
+                                            }, user);
+                                        _acceptEventArg.UserToken = user;
                                     }
                                     else
                                     {
-                                        NetworkServer.SendData(Socket, Encoding.UTF8.GetBytes(SmartFoxServer.Parse(new[]
+                                        Send(SmartFoxServer.Parse(new[]
                                         {
                                             "xt", "loginResponse", "-1", "false", "-1", name,
                                             $"User Data for {name} could not be retrieved. Please contact the staff to resolve the issue."
-                                        }) + Convert.ToChar(0x0)));
+                                        }));
                                     }
                                 }
                             }
                         }
                         else
                         {
-                            NetworkServer.SendData(Socket, Encoding.UTF8.GetBytes(SmartFoxServer.Parse(new[]
+                            Send(SmartFoxServer.Parse(new[]
                             {
                                 "xt", "loginResponse", "-1", "false", "-1", name,
                                 $"User Data for {name} could not be retrieved. Please contact the staff to resolve the issue."
-                            }) + Convert.ToChar(0x0)));
+                            }));
                         }
                     }
                 }
@@ -179,8 +162,6 @@ namespace AQWEmulator.Network.Sessions
             {
                 
             }
-
-            //Console.WriteLine(data);
         }
     }
 }

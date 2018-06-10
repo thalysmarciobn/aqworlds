@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
-using System.Text;
 using AQWEmulator.Database.Models;
-using AQWEmulator.Network;
 using AQWEmulator.Network.Sessions;
 using AQWEmulator.Utils;
 using AQWEmulator.World.Rooms;
@@ -14,7 +10,7 @@ namespace AQWEmulator.World.Users
 {
     public class User
     {
-        public User(int id, string name, Socket session, CharacterModel character)
+        public User(int id, string name, Session session, CharacterModel character)
         {
             _targets = new List<object>();
             Id = id;
@@ -22,7 +18,7 @@ namespace AQWEmulator.World.Users
             PartyOwnerId = 0;
             Name = name;
             Character = character;
-            Channel = session;
+            Session = session;
             UserClass = new UserClass();
             UserState = new UserState(this, 100, 100);
             UserStats = new UserStats(this);
@@ -39,7 +35,7 @@ namespace AQWEmulator.World.Users
         public UserState UserState { get; }
         public UserStats UserStats { get; }
         public RoomUser RoomUser { get; }
-        private Socket Channel { get; }
+        public Session Session { get; }
         public string Name { get; }
         public int Id { get; }
         public long PartyId { get; set; }
@@ -48,11 +44,6 @@ namespace AQWEmulator.World.Users
         public object[] Targets => _targets.ToArray();
 
         public bool IsBusy => UserState.OnCombat || RoomUser.IsPVP;
-
-        public void Send(string message)
-        {
-            NetworkServer.SendData(Channel, Encoding.UTF8.GetBytes(message + Convert.ToChar(0x0)));
-        }
 
         public bool ContainsTarget(object target)
         {

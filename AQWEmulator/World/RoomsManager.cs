@@ -48,10 +48,12 @@ namespace AQWEmulator.World
             var nRoom = !roomName.Contains("-") ? roomName + "-1" : roomName;
             using (var session = GameFactory.Session.OpenSession())
             {
+                Console.WriteLine(roomName);
                 var area = session.QueryOver<AreaModel>()
                     .Where(x => x.Name == (roomName.Contains("-") ? roomName.Split('-')[0] : roomName))
                     .SingleOrDefault();
                 if (area == null) return;
+                Console.WriteLine(area.File);
                 if (first)
                 {
                     lock (_lock)

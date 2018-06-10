@@ -23,9 +23,11 @@ namespace AQWEmulator
         private const int Minor = 14;
         private const int Build = 1;
 
+        public static string GameHost { get; private set; } = "";
+        public static int GamePort { get; private set; } = 5588;
+
         public static void Main(string[] args)
         {
-            ThreadPool.SetMaxThreads(200, 200);
             var start = DateTime.Now;
             try
             {
@@ -62,23 +64,40 @@ namespace AQWEmulator
                     Port = int.Parse(Xml.ToString(xml.SelectNodes("/hikari/sql/port")))
                 });
                 var gameDatabaseUsed = DateTime.Now - gameDatabaseStart;
+                GameHost = Xml.ToString(xml.SelectNodes("/hikari/network/host"));
+                GamePort = int.Parse(Xml.ToString(xml.SelectNodes("/hikari/network/port")));
+                var endpoint =
+                    new IPEndPoint(
+                        GameHost.Equals("*")
+                            ? IPAddress.Any
+                            : (IPAddress.TryParse(GameHost, out var address) ? address : IPAddress.Any), GamePort);
+                var networkServer = new NetworkServer(new NetworkSettings()
+                {
+                    Endpoint = endpoint,
+                    MaxConnections = int.Parse(Xml.ToString(xml.SelectNodes("/hikari/network/limit"))),
+                    BufferSize = int.Parse(Xml.ToString(xml.SelectNodes("/hikari/network/recvbuf"))),
+                    Backlog = int.Parse(Xml.ToString(xml.SelectNodes("/hikari/network/backlog"))),
+                    MaxSimultaneousAcceptOps = int.Parse(Xml.ToString(xml.SelectNodes("/hikari/network/@MaxSimultaneousAcceptOps"))),
+                    NumOfSaeaForRec = int.Parse(Xml.ToString(xml.SelectNodes("/hikari/network/@NumOfSaeaForRec"))),
+                    NumOfSaeaForSend = int.Parse(Xml.ToString(xml.SelectNodes("/hikari/network/@NumOfSaeaForSend")))
+                }).Init();
                 Server.Instance.Cache();
                 PacketProcessor.Register();
                 WriteConsole.Info($"Game database {gameDatabaseUsed.Seconds} s, {gameDatabaseUsed.Milliseconds}");
-                NetworkServer.Start(new NetworkSettings()
-                {
-                    Endpoint = new IPEndPoint(IPAddress.Any, 5588),
-                    BufferSize = 1024,
-                    Backlog = 5,
-                    MaxSimultaneousAcceptOps = 512,
-                    NumOfSaeaForRec = 5000,
-                    NumOfSaeaForSend = 5000
-                });
                 var used = DateTime.Now - start;
-                WriteConsole.Info($"Server started in {used.Seconds} s, {used.Milliseconds} ms on {_host}:{_port}");
+                try
+                {
+                    networkServer.Bind();
+                    WriteConsole.Info($"Server started in {used.Seconds} s, {used.Milliseconds} ms on {endpoint}");
+                }
+                catch
+                {
+                    
+                }
+
                 while (true)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(50);
                 }
             }
             catch (FileNotFound)

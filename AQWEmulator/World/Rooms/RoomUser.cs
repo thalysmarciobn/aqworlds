@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AQWEmulator.Database.Models;
+using AQWEmulator.Network.Sessions;
 using AQWEmulator.World.Users;
 
 namespace AQWEmulator.World.Rooms
@@ -37,8 +38,9 @@ namespace AQWEmulator.World.Rooms
         public int Ty { get; set; }
         public bool Afk { get; set; }
 
-        public bool IsPVP => _room != null && _room.IsPVP;
+        public bool IsPVP => _room != null && _room.IsPvp;
 
+        public Session Session => _user.Session;
         public CharacterModel Character => _user.Character;
         public UserState UserState => _user.UserState;
         public RoomUserManager RoomUserManager => _room.UserManager;
@@ -53,11 +55,6 @@ namespace AQWEmulator.World.Rooms
             Pad = pad;
             Tx = 0;
             Ty = 0;
-        }
-
-        public void Send(string message)
-        {
-            _user.Send(message);
         }
 
         public bool Remove()

@@ -141,7 +141,6 @@
     <Compile Include="Database\Models\UserModel.cs" />
     <Compile Include="Emulator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
-    <Compile Include="Helper\NetworkHandler.cs" />
     <Compile Include="Helper\NetworkHelper.cs" />
     <Compile Include="Helper\PartyHelper.cs" />
     <Compile Include="Network\NetworkServer.cs" />
@@ -179,6 +178,7 @@
     <Compile Include="Utils\AQW\Preference.cs" />
     <Compile Include="Utils\Exceptions\FileNotFound.cs" />
     <Compile Include="Utils\Files\Xml.cs" />
+    <Compile Include="Utils\LockedList.cs" />
     <Compile Include="Utils\Log\WriteConsole.cs" />
     <Compile Include="Utils\Indent.cs" />
     <Compile Include="Utils\PLockedList.cs" />

@@ -67,7 +67,6 @@
         <e p="Emulator.cs" t="Include" />
         <e p="Helper" t="Include">
           <e p="JsonHelper.cs" t="Include" />
-          <e p="NetworkHandler.cs" t="Include" />
           <e p="NetworkHelper.cs" t="Include" />
           <e p="PartyHelper.cs" t="Include" />
         </e>
@@ -132,6 +131,7 @@
             <e p="Xml.cs" t="Include" />
           </e>
           <e p="Indent.cs" t="Include" />
+          <e p="LockedList.cs" t="Include" />
           <e p="Log" t="Include">
             <e p="WriteConsole.cs" t="Include" />
           </e>

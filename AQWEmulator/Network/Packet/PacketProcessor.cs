@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
 using AQWEmulator.Utils.Log;
@@ -8,7 +9,7 @@ namespace AQWEmulator.Network.Packet
 {
     public static class PacketProcessor
     {
-        private static readonly Dictionary<string, IPacketHandler> Events = new Dictionary<string, IPacketHandler>();
+        private static readonly ConcurrentDictionary<string, IPacketHandler> Events = new ConcurrentDictionary<string, IPacketHandler>();
 
         public static void Register()
         {
@@ -23,12 +24,10 @@ namespace AQWEmulator.Network.Packet
                     WriteConsole.Info($"Packet {type} is handling an invalid code.");
                     continue;
                 }
-                if (Events.ContainsKey(packethandlerattribs[0].Packet))
+                if (!Events.TryAdd(packethandlerattribs[0].Packet, (IPacketHandler) Activator.CreateInstance(type)))
                 {
                     WriteConsole.Info($"Packet {type} is repeating the code of other packet ({packethandlerattribs[0].Packet}).");
-                    continue;
                 }
-                Events.Add(packethandlerattribs[0].Packet, (IPacketHandler) Activator.CreateInstance(type));
             }
             WriteConsole.Info($"{Events.Count} packets loaded.");
         }

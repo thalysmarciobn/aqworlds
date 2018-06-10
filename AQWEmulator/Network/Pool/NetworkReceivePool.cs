@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Net.Sockets;
 using System.ServiceModel.Channels;
-using AQWEmulator.Network.Sessions;
 
 namespace AQWEmulator.Network.Pool
 {
@@ -18,10 +17,7 @@ namespace AQWEmulator.Network.Pool
             for (var i = 0; i < capacity; i++)
             {
                 var buffer = _bufferManager.TakeBuffer(singleBufferMaxSize);
-                var acceptEventArg = new SocketAsyncEventArgs
-                {
-                    UserToken = new Session(i)
-                };
+                var acceptEventArg = new SocketAsyncEventArgs();
                 acceptEventArg.Completed += completed;
                 acceptEventArg.SetBuffer(buffer, 0, buffer.Length);
                 _pool.Push(acceptEventArg);

@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using System.Threading;
 using AQWEmulator.Database.Models;
 using AQWEmulator.Network.Sessions;
@@ -30,11 +29,11 @@ namespace AQWEmulator.World
             }
         }
 
-        public User AddAndGet(string name, Socket channel, CharacterModel character)
+        public User AddAndGet(string name, Session session, CharacterModel character)
         {
             lock (_lock)
             {
-                var user = new User(Interlocked.Increment(ref _lastUserId), name.ToLower(), channel, character);
+                var user = new User(Interlocked.Increment(ref _lastUserId), name.ToLower(), session, character);
                 if (_users.TryAdd(name, user)) return user;
             }
 

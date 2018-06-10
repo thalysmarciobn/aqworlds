@@ -17,10 +17,11 @@
 		<reputation>1</reputation>
 		<class>1</class>
 	</rates>
-	<network boss="4" worker="4">
-		<host>*</host>
-		<port>5090</port>
-		<backlog>100</backlog>
+	<network MaxSimultaneousAcceptOps="512" NumOfSaeaForRec="24" NumOfSaeaForSend="24">
+		<limit>5</limit>
+		<host>127.0.0.1</host>
+		<port>5588</port>
+		<backlog>2</backlog>
 		<recvbuf>1024</recvbuf>
 		<keepalive>true</keepalive>
 		<tcpnodelay>true</tcpnodelay>

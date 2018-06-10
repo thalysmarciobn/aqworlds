@@ -18,7 +18,7 @@ namespace AQWEmulator.World.Rooms
                 Id = roomId;
                 UserManager = new RoomUserManager(roomsManager, this);
                 MonsterManager = new RoomMonsterManager(this);
-                IsPVP = Convert.ToBoolean(Area.Pvp);
+                IsPvp = Convert.ToBoolean(Area.Pvp);
             }
         }
 
@@ -26,7 +26,7 @@ namespace AQWEmulator.World.Rooms
 
         public string Name { get; }
         public int Id { get; }
-        public bool IsPVP { get; }
+        public bool IsPvp { get; }
         public RoomUserManager UserManager { get; }
         public RoomMonsterManager MonsterManager { get; }
     }

@@ -18,8 +18,21 @@ namespace AQWEmulator.Utils.Log
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
         }
+
+        public static void Error(string message)
+        {
+            lock (Lock)
+            {
+                Console.Write(DateTime.Now.ToString("HH:mm:ss"));
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(" [ERROR] ");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine(message);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+        }
         
-        public static void Session(string message, int session)
+        public static void Session(string message, string session)
         {
             lock (Lock)
             {
