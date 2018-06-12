@@ -116,7 +116,7 @@
     <Compile Include="Database\Maps\ServerMap.cs" />
     <Compile Include="Database\Maps\ShopItemMap.cs" />
     <Compile Include="Database\Maps\ShopMap.cs" />
-    <Compile Include="Database\Maps\SkillAuraMap.cs" />
+    <Compile Include="Database\Maps\AuraMap.cs" />
     <Compile Include="Database\Maps\SkillMap.cs" />
     <Compile Include="Database\Maps\UserMap.cs" />
     <Compile Include="Database\Models\AccessLogModel.cs" />
@@ -136,7 +136,7 @@
     <Compile Include="Database\Models\ServerModel.cs" />
     <Compile Include="Database\Models\ShopItemModel.cs" />
     <Compile Include="Database\Models\ShopModel.cs" />
-    <Compile Include="Database\Models\SkillAuraEffectModel.cs" />
+    <Compile Include="Database\Models\AuraModel.cs" />
     <Compile Include="Database\Models\SkillAuraModel.cs" />
     <Compile Include="Database\Models\SkillModel.cs" />
     <Compile Include="Database\Models\UserModel.cs" />

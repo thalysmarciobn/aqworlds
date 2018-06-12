@@ -5,6 +5,9 @@
     <e p="C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds" t="IncludeFlat">
       <e p="AQWEmulator" t="IncludeRecursive">
         <e p="AQWEmulator.csproj" t="IncludeRecursive" />
+        <e p="Attributes" t="Include">
+          <e p="PacketInAttribute.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Combat" t="Include">
           <e p="AbstractState.cs" t="Include" />
@@ -23,6 +26,7 @@
             <e p="AlertLogMap.cs" t="Include" />
             <e p="AreaMap.cs" t="Include" />
             <e p="AreaMonsterMap.cs" t="Include" />
+            <e p="AuraMap.cs" t="Include" />
             <e p="CharacterItemMap.cs" t="Include" />
             <e p="CharacterMap.cs" t="Include" />
             <e p="ClassSkillMap.cs" t="Include" />
@@ -36,7 +40,6 @@
             <e p="ServerMap.cs" t="Include" />
             <e p="ShopItemMap.cs" t="Include" />
             <e p="ShopMap.cs" t="Include" />
-            <e p="SkillAuraMap.cs" t="Include" />
             <e p="SkillMap.cs" t="Include" />
             <e p="UserMap.cs" t="Include" />
           </e>
@@ -45,6 +48,7 @@
             <e p="AlertLogModel.cs" t="Include" />
             <e p="AreaModel.cs" t="Include" />
             <e p="AreaMonsterModel.cs" t="Include" />
+            <e p="AuraModel.cs" t="Include" />
             <e p="CharacterItemModel.cs" t="Include" />
             <e p="CharacterModel.cs" t="Include" />
             <e p="ClassSkillModel.cs" t="Include" />
@@ -58,7 +62,6 @@
             <e p="ServerModel.cs" t="Include" />
             <e p="ShopItemModel.cs" t="Include" />
             <e p="ShopModel.cs" t="Include" />
-            <e p="SkillAuraEffectModel.cs" t="Include" />
             <e p="SkillAuraModel.cs" t="Include" />
             <e p="SkillModel.cs" t="Include" />
             <e p="UserModel.cs" t="Include" />
@@ -99,7 +102,6 @@
               <e p="Whisper.cs" t="Include" />
             </e>
             <e p="IPacketHandler.cs" t="Include" />
-            <e p="PacketInAttribute.cs" t="Include" />
             <e p="PacketProcessor.cs" t="Include" />
           </e>
           <e p="Pool" t="Include">

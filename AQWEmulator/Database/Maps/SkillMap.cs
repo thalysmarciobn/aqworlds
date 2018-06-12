@@ -25,7 +25,6 @@ namespace AQWEmulator.Database.Maps
             Map(x => x.Strl).Column("Strl");
             Map(x => x.Cooldown).Column("Cooldown");
             Map(x => x.HitTargets).Column("Hit_Targets");
-            Map(x => x.AuraId).Column("Aura_ID");
         }
     }
 }

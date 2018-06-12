@@ -3,11 +3,11 @@ using FluentNHibernate.Mapping;
 
 namespace AQWEmulator.Database.Maps
 {
-    public class SkillAuraMap : ClassMap<SkillAuraModel>
+    public class SkillAuraMap : ClassMap<AuraModel>
     {
         public SkillAuraMap()
         {
-            Table("hikari_skills_auras");
+            Table("hikari_auras");
             Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.Name).Column("Name");

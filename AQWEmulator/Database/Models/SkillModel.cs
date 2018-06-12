@@ -1,4 +1,6 @@
-﻿namespace AQWEmulator.Database.Models
+﻿using System.Collections.Generic;
+
+namespace AQWEmulator.Database.Models
 {
     public class SkillModel : IModel
     {
@@ -18,6 +20,6 @@
         public virtual string Strl { get; protected set; }
         public virtual int Cooldown { get; protected set; }
         public virtual int HitTargets { get; protected set; }
-        public virtual int AuraId { get; protected set; }
+        public virtual List<SkillAuraModel> Auras { get; protected set; }
     }
 }
