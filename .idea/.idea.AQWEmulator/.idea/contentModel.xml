@@ -26,6 +26,7 @@
             <e p="AlertLogMap.cs" t="Include" />
             <e p="AreaMap.cs" t="Include" />
             <e p="AreaMonsterMap.cs" t="Include" />
+            <e p="AuraEffectMap.cs" t="Include" />
             <e p="AuraMap.cs" t="Include" />
             <e p="CharacterItemMap.cs" t="Include" />
             <e p="CharacterMap.cs" t="Include" />
@@ -40,6 +41,7 @@
             <e p="ServerMap.cs" t="Include" />
             <e p="ShopItemMap.cs" t="Include" />
             <e p="ShopMap.cs" t="Include" />
+            <e p="SkillAuraMap.cs" t="Include" />
             <e p="SkillMap.cs" t="Include" />
             <e p="UserMap.cs" t="Include" />
           </e>
@@ -48,6 +50,7 @@
             <e p="AlertLogModel.cs" t="Include" />
             <e p="AreaModel.cs" t="Include" />
             <e p="AreaMonsterModel.cs" t="Include" />
+            <e p="AuraEffectModel.cs" t="Include" />
             <e p="AuraModel.cs" t="Include" />
             <e p="CharacterItemModel.cs" t="Include" />
             <e p="CharacterModel.cs" t="Include" />

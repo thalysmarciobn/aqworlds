@@ -20,6 +20,6 @@ namespace AQWEmulator.Database.Models
         public virtual string Strl { get; protected set; }
         public virtual int Cooldown { get; protected set; }
         public virtual int HitTargets { get; protected set; }
-        public virtual List<SkillAuraModel> Auras { get; protected set; }
+        public virtual IList<SkillAuraModel> Auras { get; protected set; }
     }
 }

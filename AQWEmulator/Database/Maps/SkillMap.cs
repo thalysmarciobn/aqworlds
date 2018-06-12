@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public SkillMap()
         {
             Table("hikari_skills");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.Name).Column("Name");
             Map(x => x.Animation).Column("Animation");
@@ -25,6 +24,7 @@ namespace AQWEmulator.Database.Maps
             Map(x => x.Strl).Column("Strl");
             Map(x => x.Cooldown).Column("Cooldown");
             Map(x => x.HitTargets).Column("Hit_Targets");
+            HasMany(x => x.Auras).KeyColumn("Aura_ID");
         }
     }
 }

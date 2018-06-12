@@ -49,8 +49,6 @@ namespace AQWEmulator.Network.Sessions
 
         public void Receive(string data)
         {
-            try
-            {
                 if (data.Equals("<policy-file-request/>" + Convert.ToChar(0x0)))
                 {
                     Send($"<cross-domain-policy><allow-access-from domain='*' to-ports='{Emulator.GamePort}' /></cross-domain-policy>");
@@ -157,11 +155,6 @@ namespace AQWEmulator.Network.Sessions
                         }
                     }
                 }
-            }
-            catch
-            {
-                
-            }
         }
     }
 }

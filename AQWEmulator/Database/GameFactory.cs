@@ -57,10 +57,16 @@ namespace AQWEmulator.Database
                     m.FluentMappings.AddFromAssemblyOf<ServerMap>().Conventions
                         .Add(DefaultCascade.All(), DefaultLazy.Never()))
                 .Mappings(m =>
-                    m.FluentMappings.AddFromAssemblyOf<SkillAuraMap>().Conventions
+                    m.FluentMappings.AddFromAssemblyOf<AuraMap>().Conventions
+                        .Add(DefaultCascade.All(), DefaultLazy.Never()))
+                .Mappings(m =>
+                    m.FluentMappings.AddFromAssemblyOf<AuraEffectMap>().Conventions
                         .Add(DefaultCascade.All(), DefaultLazy.Never()))
                 .Mappings(m =>
                     m.FluentMappings.AddFromAssemblyOf<SkillMap>().Conventions
+                        .Add(DefaultCascade.All(), DefaultLazy.Never()))
+                .Mappings(m =>
+                    m.FluentMappings.AddFromAssemblyOf<SkillAuraMap>().Conventions
                         .Add(DefaultCascade.All(), DefaultLazy.Never()))
                 .Mappings(m =>
                     m.FluentMappings.AddFromAssemblyOf<CharacterItemMap>().Conventions

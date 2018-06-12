@@ -15,7 +15,7 @@ namespace AQWEmulator.World.Users
         public readonly Dictionary<string, int> Cape =
             new Dictionary<string, int> {{"STR", 0}, {"END", 0}, {"DEX", 0}, {"INT", 0}, {"WIS", 0}, {"LCK", 0}};
 
-        public readonly HashSet<SkillAuraEffectModel> Effects = new HashSet<SkillAuraEffectModel>();
+        public readonly HashSet<AuraEffectModel> Effects = new HashSet<AuraEffectModel>();
 
         public readonly Dictionary<string, int> Helm =
             new Dictionary<string, int> {{"STR", 0}, {"END", 0}, {"DEX", 0}, {"INT", 0}, {"WIS", 0}, {"LCK", 0}};
