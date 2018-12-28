@@ -15,7 +15,7 @@ namespace AQWEmulator.Database.Maps
             Map(x => x.Damage).Column("Damage");
             Map(x => x.Mana).Column("Mana");
             Map(x => x.Icon).Column("Icon");
-            Map(x => x.Range).Column("Range");
+            Map(x => x.Range).Column("Skill_Range");
             Map(x => x.Dsrc).Column("Dsrc");
             Map(x => x.Reference).Column("Reference");
             Map(x => x.Target).Column("Target");

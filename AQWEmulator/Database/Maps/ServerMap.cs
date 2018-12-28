@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public ServerMap()
         {
             Table("hikari_servers");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.Name).Column("Name");
             Map(x => x.Upgrade).Column("Upgrade");

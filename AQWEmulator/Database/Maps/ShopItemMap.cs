@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public ShopItemMap()
         {
             Table("hikari_shops_items");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.ShopId).Column("Shop_ID");
             Map(x => x.ItemId).Column("Item_ID");

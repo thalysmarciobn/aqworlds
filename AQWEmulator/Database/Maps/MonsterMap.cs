@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public MonsterMap()
         {
             Table("hikari_monsters");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.Name).Column("Name");
             Map(x => x.Race).Column("Race");

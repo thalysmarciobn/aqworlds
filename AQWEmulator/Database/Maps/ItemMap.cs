@@ -19,7 +19,7 @@ namespace AQWEmulator.Database.Maps
             Map(x => x.Equipment).Column("Equipment");
             Map(x => x.Level).Column("Level");
             Map(x => x.Dps).Column("DPS");
-            Map(x => x.Range).Column("Range");
+            Map(x => x.Range).Column("Item_Range");
             Map(x => x.Rarity).Column("Rarity");
             Map(x => x.Quantity).Column("Quantity");
             Map(x => x.Stack).Column("Stack");

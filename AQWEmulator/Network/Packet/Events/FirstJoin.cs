@@ -15,7 +15,7 @@ namespace AQWEmulator.Network.Packet.Events
         {
             var firstJoin = new JsonFirstJoin
             {
-                o = ServerCoreValues.Core()
+                o = ServerCoreValues.CoreValues()
             };
             NetworkHelper.SendResponse(new JsonPacket(-1, firstJoin), user);
             RoomsManager.Instance.Join(user, "battleon-1", "Enter", "Spawn", true);

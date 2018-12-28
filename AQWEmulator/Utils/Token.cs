@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AQWEmulator.Utils
 {
-    public class Token
+    public static class Token
     {
         public static string Create(int length)
         {

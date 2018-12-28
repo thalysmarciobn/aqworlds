@@ -17,8 +17,8 @@ namespace AQWEmulator.Helper
             user.UserStats.Update();
             var END = Convert.ToInt32(user.UserStats.Get_V_END() + user.UserStats.Get_END());
             var WIS = Convert.ToInt32(user.UserStats.Get_V_WIS() + user.UserStats.Get_WIS());
-            var intHPperEND = Convert.ToInt32(ServerCoreValues.Get(Indent.Core.IntHpPerEnd));
-            var intMPperWIS = Convert.ToInt32(ServerCoreValues.Get(Indent.Core.IntHpPerWis));
+            var intHPperEND = Convert.ToInt32(ServerCoreValues.Values.Configuration.HpPerEnd);
+            var intMPperWIS = Convert.ToInt32(ServerCoreValues.Values.Configuration.MpPerWis);
             var addedHP = END * intHPperEND;
             var userHp = (int) (ServerCoreValues.GetHealthByLevel(user.Character.Level) + addedHP);
             const int
@@ -210,39 +210,23 @@ namespace AQWEmulator.Helper
                     actObj.Add("ref", skill.Reference);
                     if (!skill.Strl.Equals("")) actObj.Add("strl", skill.Strl);
                     actObj.Add("tgt", skill.Target);
-                    actObj.Add("typ", skill.Type);
 
                     if (skill.HitTargets > 0)
                     {
                         actObj.Add("tgtMax", skill.HitTargets);
                         actObj.Add("tgtMin", "1");
                     }
-
-                    switch (skill.Reference)
-                    {
-                        case "aa":
-                            actObj["typ"] = "aa";
-                            actObj.Add("auto", true);
-                            actObj.Add("isOK", true);
-                            active.Add(actObj);
-                            break;
-                        case "a1":
-                            actObj.Add("isOK", true);
-                            active.Add(actObj);
-                            break;
-                        case "a2":
-                            actObj.Add("isOK", rank >= 2);
-                            active.Add(actObj);
-                            break;
-                        case "a3":
-                            actObj.Add("isOK", rank >= 3);
-                            active.Add(actObj);
-                            break;
-                        case "a4":
-                            actObj.Add("isOK", rank >= 5);
-                            active.Add(actObj);
-                            break;
-                    }
+                    actObj.Add("typ", skill.Reference.Equals("aa") ? "aa" : skill.Type);
+                    actObj.Add("auto", skill.Reference.Equals("aa"));
+                    actObj.Add("isOK", 
+                        skill.Reference.Equals("a4") 
+                            ? rank >= 5 
+                            : skill.Reference.Equals("a3") 
+                                ? rank >= 3 
+                                : skill.Reference.Equals("a2") 
+                                    ? rank >= 2 
+                                    : skill.Reference.Equals("a1") || skill.Reference.Equals("aa"));
+                    active.Add(actObj);
                 }
             }
 
@@ -265,7 +249,7 @@ namespace AQWEmulator.Helper
             active.Add(potionObj1);
             var actions1 = new JObject {{"active", active}, {"passive", passive}};
             sAct.Add("cmd", "sAct");
-            sAct.Add("actions", actions1);
+            sAct.Add("actions", new JObject {{"active", active}, {"passive", passive}});
             ClearAuras(user);
             ApplyPassiveAuras(user, rank);
             NetworkHelper.SendResponse(sAct, user);

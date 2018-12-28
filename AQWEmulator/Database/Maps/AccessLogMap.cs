@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public AccessLogMap()
         {
             Table("logs_characters_access");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id").GeneratedBy.Increment();
             Map(x => x.UserId).Column("User_ID");
             Map(x => x.CharId).Column("Character_ID");

@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public AreaMap()
         {
             Table("hikari_areas");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.Name).Column("Name");
             Map(x => x.File).Column("Area_File");

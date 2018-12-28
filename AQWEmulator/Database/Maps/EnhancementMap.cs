@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public EnhancementMap()
         {
             Table("hikari_enhancements");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.Name).Column("Name");
             Map(x => x.PatternId).Column("Pattern_ID");

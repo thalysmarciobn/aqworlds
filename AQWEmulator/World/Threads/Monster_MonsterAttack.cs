@@ -58,10 +58,10 @@ namespace AQWEmulator.World.Threads
             var dps = MonsterModel.Dps;
             var maxDmg = (int) Math.Ceiling(dps + dps * 0.1D);
             var minDmg = (int) Math.Floor(dps - dps * 0.1D);
-            var critChance = MonsterModel.Level / ServerCoreValues.Get(Indent.Core.LevelMax);
+            var critChance = MonsterModel.Level / ServerCoreValues.Values.Configuration.LevelMax;
             var dodgeChance = user.UserStats.VTdo;
-            var missChance = ServerCoreValues.Get(Indent.Core.BaseMiss);
-            var critValue = ServerCoreValues.Get(Indent.Core.BaseCritValue);
+            var missChance = ServerCoreValues.Values.Configuration.BaseMiss;
+            var critValue = ServerCoreValues.Values.Configuration.BaseCriticalValue;
             var damageEval = new DamageEval("", "", maxDmg, minDmg, 1, critChance, dodgeChance, missChance, critValue);
             userState.DecreaseHealth(damageEval.Damage);
             var ct = new JsonCt

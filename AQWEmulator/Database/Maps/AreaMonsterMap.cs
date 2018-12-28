@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public AreaMonsterMap()
         {
             Table("hikari_areas_monsters");
-            Id(x => x.Id).Column("id");
             Map(x => x.MonMapId).Column("Monster_Map_ID");
             Map(x => x.AreaId).Column("Area_ID");
             Map(x => x.MonId).Column("Monster_ID");

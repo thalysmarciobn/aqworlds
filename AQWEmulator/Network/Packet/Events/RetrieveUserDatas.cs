@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using AQWEmulator.Attributes;
 using AQWEmulator.Helper;
 using AQWEmulator.World;
@@ -82,7 +83,7 @@ namespace AQWEmulator.Network.Packet.Events
                         userData.intActivationFlag = character.ActivationFlag;
                         userData.intCoins = character.Coins;
                         userData.intExp = character.Experience;
-                        var coreExp = ServerCoreValues.GetExpToLevel(character.Level);
+                        var coreExp = ServerCoreValues.ExpTable.Configuration.Levels.FirstOrDefault(x => x.Level == character.Level);
                         userData.intExpToLevel = coreExp?.Experience ?? 20000000;
                         userData.intGold = character.Gold;
                         userData.intHP = state.Health;

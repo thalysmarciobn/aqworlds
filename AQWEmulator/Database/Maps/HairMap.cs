@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public HairMap()
         {
             Table("hikari_hairs");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.File).Column("Data_File");
             Map(x => x.Name).Column("Name");

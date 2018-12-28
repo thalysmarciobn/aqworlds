@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public CharacterMap()
         {
             Table("hikari_characters");
-            LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.UserId).Column("User_ID");
             Map(x => x.Name).Column("Name");

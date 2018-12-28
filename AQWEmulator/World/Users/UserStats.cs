@@ -15,15 +15,15 @@ namespace AQWEmulator.World.Users
         public readonly Dictionary<string, int> Cape =
             new Dictionary<string, int> {{"STR", 0}, {"END", 0}, {"DEX", 0}, {"INT", 0}, {"WIS", 0}, {"LCK", 0}};
 
-        public readonly HashSet<AuraEffectModel> Effects = new HashSet<AuraEffectModel>();
-
         public readonly Dictionary<string, int> Helm =
             new Dictionary<string, int> {{"STR", 0}, {"END", 0}, {"DEX", 0}, {"INT", 0}, {"WIS", 0}, {"LCK", 0}};
 
-        private readonly Dictionary<string, int> Innate =
+        public readonly Dictionary<string, int> Weapon =
             new Dictionary<string, int> {{"STR", 0}, {"END", 0}, {"DEX", 0}, {"INT", 0}, {"WIS", 0}, {"LCK", 0}};
 
-        public readonly Dictionary<string, int> Weapon =
+        public readonly HashSet<AuraEffectModel> Effects = new HashSet<AuraEffectModel>();
+
+        private readonly Dictionary<string, int> Innate =
             new Dictionary<string, int> {{"STR", 0}, {"END", 0}, {"DEX", 0}, {"INT", 0}, {"WIS", 0}, {"LCK", 0}};
 
         public UserStats(User user)
@@ -246,8 +246,8 @@ namespace AQWEmulator.World.Users
             var iDps = enhancement?.Dps ?? 100.0D;
             iDps = Math.Abs(iDps) < 0.0D ? 100.0D : iDps;
             iDps /= 100.0D;
-            var intAPtoDps = ServerCoreValues.Get("intAPtoDPS");
-            var pcdpsMod = ServerCoreValues.Get("PCDPSMod");
+            var intAPtoDps = ServerCoreValues.Values.Configuration.ApToDps;
+            var pcdpsMod = ServerCoreValues.Values.Configuration.PcDpsMod;
             var hpTgt = ServerCoreValues.GetBaseHPByLevel(level);
             const double ttd = 20.0D;
             var tDps = hpTgt / 20.0D * 0.7D;
@@ -375,12 +375,12 @@ namespace AQWEmulator.World.Users
             Thi = 0.0D;
             Tha = 0.0D;
             Tre = 0.0D;
-            VTbl = ServerCoreValues.Get(Indent.Core.BaseBlock);
-            VTpa = ServerCoreValues.Get(Indent.Core.BaseParry);
-            VTdo = ServerCoreValues.Get(Indent.Core.BaseDodge);
-            VTcr = ServerCoreValues.Get(Indent.Core.BaseCrit);
-            VThi = ServerCoreValues.Get(Indent.Core.BaseHit);
-            VTha = ServerCoreValues.Get(Indent.Core.BaseHaste);
+            VTbl = ServerCoreValues.Values.Configuration.BaseBlock;
+            VTpa = ServerCoreValues.Values.Configuration.BaseParry;
+            VTdo = ServerCoreValues.Values.Configuration.BaseDodge;
+            VTcr = ServerCoreValues.Values.Configuration.BaseCritical;
+            VThi = ServerCoreValues.Values.Configuration.BaseHit;
+            VTha = ServerCoreValues.Values.Configuration.BaseHaste;
             VTre = 0.0D;
             Cpo = 1.0D;
             Cpi = 1.0D;
@@ -404,14 +404,14 @@ namespace AQWEmulator.World.Users
             VCho = 1.0D;
             VChi = 1.0D;
             VCmc = 1.0D;
-            Scm = ServerCoreValues.Get(Indent.Core.BaseCritValue);
-            Sbm = ServerCoreValues.Get(Indent.Core.BaseBlockValue);
-            Srm = ServerCoreValues.Get(Indent.Core.BaseResistValue);
-            Sem = ServerCoreValues.Get(Indent.Core.BaseEventValue);
-            VScm = ServerCoreValues.Get(Indent.Core.BaseCritValue);
-            VSbm = ServerCoreValues.Get(Indent.Core.BaseBlockValue);
-            VSrm = ServerCoreValues.Get(Indent.Core.BaseResistValue);
-            VSem = ServerCoreValues.Get(Indent.Core.BaseEventValue);
+            Scm = ServerCoreValues.Values.Configuration.BaseCriticalValue;
+            Sbm = ServerCoreValues.Values.Configuration.BaseBlockValue;
+            Srm = ServerCoreValues.Values.Configuration.BaseResistValue;
+            Sem = ServerCoreValues.Values.Configuration.BaseEventValue;
+            VScm = ServerCoreValues.Values.Configuration.BaseCriticalValue;
+            VSbm = ServerCoreValues.Values.Configuration.BaseBlockValue;
+            VSrm = ServerCoreValues.Values.Configuration.BaseResistValue;
+            VSem = ServerCoreValues.Values.Configuration.BaseEventValue;
             Shb = 0.0D;
             Smb = 0.0D;
             VShb = 0.0D;

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\thaly\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_AQWEmulator.177390371.00" t="ExcludeRecursive" />
-    <e p="C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds" t="IncludeFlat">
+    <e p="C:\Users\Thalys\.Rider2018.2\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\Thalys\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Thalys\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_AQWEmulator.1130953720.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Thalys\Documents\gitlab\AQWorlds" t="IncludeFlat">
       <e p="AQWEmulator" t="IncludeRecursive">
         <e p="AQWEmulator.csproj" t="IncludeRecursive" />
         <e p="Attributes" t="Include">
@@ -12,11 +14,13 @@
         <e p="Combat" t="Include">
           <e p="AbstractState.cs" t="Include" />
           <e p="DamageEval.cs" t="Include" />
-          <e p="DamageType.cs" t="Include" />
-          <e p="ElementalType.cs" t="Include" />
           <e p="GarParser.cs" t="Include" />
-          <e p="ItemType.cs" t="Include" />
           <e p="Stats.cs" t="Include" />
+          <e p="Types" t="Include">
+            <e p="DamageType.cs" t="Include" />
+            <e p="ElementalType.cs" t="Include" />
+            <e p="ItemType.cs" t="Include" />
+          </e>
         </e>
         <e p="Database" t="Include">
           <e p="GameFactory.cs" t="Include" />
@@ -122,11 +126,7 @@
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
-        <e p="Settings" t="Include">
-          <e p="NetworkSettings.cs" t="Include" />
-          <e p="ServerSettings.cs" t="Include" />
-          <e p="SessionSettings.cs" t="Include" />
-        </e>
+        <e p="Settings" t="Include" />
         <e p="Threading" t="Include">
           <e p="AbstractThread.cs" t="Include" />
           <e p="ThreadHelper.cs" t="Include" />
@@ -139,15 +139,10 @@
           <e p="Exceptions" t="Include">
             <e p="FileNotFound.cs" t="Include" />
           </e>
-          <e p="Files" t="Include">
-            <e p="Xml.cs" t="Include" />
-          </e>
           <e p="Indent.cs" t="Include" />
-          <e p="LockedList.cs" t="Include" />
           <e p="Log" t="Include">
             <e p="WriteConsole.cs" t="Include" />
           </e>
-          <e p="PLockedList.cs" t="Include" />
           <e p="RoundTens.cs" t="Include" />
           <e p="SmartFoxServer.cs" t="Include" />
           <e p="Token.cs" t="Include" />
@@ -183,6 +178,23 @@
             <e p="UserStats.cs" t="Include" />
           </e>
           <e p="UsersManager.cs" t="Include" />
+        </e>
+        <e p="Xml" t="Include">
+          <e p="Game" t="Include">
+            <e p="Core" t="Include">
+              <e p="ExpTable.cs" t="Include" />
+              <e p="ExpTableData.cs" t="Include" />
+              <e p="Settings.cs" t="Include" />
+              <e p="Values.cs" t="Include" />
+            </e>
+            <e p="ServerDatabase.cs" t="Include" />
+            <e p="ServerLimits.cs" t="Include" />
+            <e p="ServerNetwork.cs" t="Include" />
+            <e p="ServerRates.cs" t="Include" />
+            <e p="ServerSettings.cs" t="Include" />
+          </e>
+          <e p="XmlSettingsSerializer.cs" t="Include" />
+          <e p="XmlUtils.cs" t="Include" />
         </e>
       </e>
       <e p="AQWEmulator.sln" t="IncludeFlat" />

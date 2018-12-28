@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+<ExpTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Levels Level="1">
+    <Rate>1</Rate>
+    <Experience>65</Experience>
+  </Levels>
+  <Levels Level="2">
+    <Rate>1</Rate>
+    <Experience>120</Experience>
+  </Levels>
+  <Levels Level="3">
+    <Rate>1</Rate>
+    <Experience>300</Experience>
+  </Levels>
+  <Levels Level="4">
+    <Rate>1</Rate>
+    <Experience>600</Experience>
+  </Levels>
+  <Levels Level="5">
+    <Rate>1</Rate>
+    <Experience>1000</Experience>
+  </Levels>
+  <Levels Level="6">
+    <Rate>1</Rate>
+    <Experience>1500</Experience>
+  </Levels>
+  <Levels Level="7">
+    <Rate>1</Rate>
+    <Experience>2000</Experience>
+  </Levels>
+  <Levels Level="8">
+    <Rate>1</Rate>
+    <Experience>2550</Experience>
+  </Levels>
+  <Levels Level="9">
+    <Rate>1</Rate>
+    <Experience>3200</Experience>
+  </Levels>
+  <Levels Level="10">
+    <Rate>1</Rate>
+    <Experience>3850</Experience>
+  </Levels>
+  <Levels Level="11">
+    <Rate>1</Rate>
+    <Experience>4600</Experience>
+  </Levels>
+  <Levels Level="12">
+    <Rate>1</Rate>
+    <Experience>5450</Experience>
+  </Levels>
+  <Levels Level="13">
+    <Rate>1</Rate>
+    <Experience>6450</Experience>
+  </Levels>
+  <Levels Level="14">
+    <Rate>1</Rate>
+    <Experience>7700</Experience>
+  </Levels>
+  <Levels Level="15">
+    <Rate>1</Rate>
+    <Experience>9200</Experience>
+  </Levels>
+  <Levels Level="16">
+    <Rate>1</Rate>
+    <Experience>12900</Experience>
+  </Levels>
+  <Levels Level="17">
+    <Rate>1</Rate>
+    <Experience>15150</Experience>
+  </Levels>
+  <Levels Level="18">
+    <Rate>1</Rate>
+    <Experience>17650</Experience>
+  </Levels>
+  <Levels Level="19">
+    <Rate>1</Rate>
+    <Experience>20650</Experience>
+  </Levels>
+  <Levels Level="20">
+    <Rate>1</Rate>
+    <Experience>24150</Experience>
+  </Levels>
+  <Levels Level="21">
+    <Rate>1</Rate>
+    <Experience>28150</Experience>
+  </Levels>
+  <Levels Level="22">
+    <Rate>1</Rate>
+    <Experience>32650</Experience>
+  </Levels>
+  <Levels Level="23">
+    <Rate>1</Rate>
+    <Experience>32650</Experience>
+  </Levels>
+  <Levels Level="24">
+    <Rate>1</Rate>
+    <Experience>37650</Experience>
+  </Levels>
+  <Levels Level="25">
+    <Rate>1</Rate>
+    <Experience>43650</Experience>
+  </Levels>
+  <Levels Level="26">
+    <Rate>1</Rate>
+    <Experience>51650</Experience>
+  </Levels>
+  <Levels Level="27">
+    <Rate>1</Rate>
+    <Experience>63150</Experience>
+  </Levels>
+  <Levels Level="28">
+    <Rate>1</Rate>
+    <Experience>79650</Experience>
+  </Levels>
+  <Levels Level="29">
+    <Rate>1</Rate>
+    <Experience>101650</Experience>
+  </Levels>
+  <Levels Level="30">
+    <Rate>1</Rate>
+    <Experience>131150</Experience>
+  </Levels>
+  <Levels Level="31">
+    <Rate>1</Rate>
+    <Experience>170650</Experience>
+  </Levels>
+  <Levels Level="32">
+    <Rate>1</Rate>
+    <Experience>223150</Experience>
+  </Levels>
+  <Levels Level="33">
+    <Rate>1</Rate>
+    <Experience>290650</Experience>
+  </Levels>
+  <Levels Level="34">
+    <Rate>1</Rate>
+    <Experience>312500</Experience>
+  </Levels>
+  <Levels Level="35">
+    <Rate>1</Rate>
+    <Experience>331250</Experience>
+  </Levels>
+  <Levels Level="36">
+    <Rate>1</Rate>
+    <Experience>350000</Experience>
+  </Levels>
+  <Levels Level="37">
+    <Rate>1</Rate>
+    <Experience>368750</Experience>
+  </Levels>
+  <Levels Level="38">
+    <Rate>1</Rate>
+    <Experience>387500</Experience>
+  </Levels>
+  <Levels Level="39">
+    <Rate>1</Rate>
+    <Experience>406250</Experience>
+  </Levels>
+  <Levels Level="40">
+    <Rate>1</Rate>
+    <Experience>425000</Experience>
+  </Levels>
+  <Levels Level="41">
+    <Rate>1</Rate>
+    <Experience>443750</Experience>
+  </Levels>
+  <Levels Level="42">
+    <Rate>1</Rate>
+    <Experience>462500</Experience>
+  </Levels>
+  <Levels Level="43">
+    <Rate>1</Rate>
+    <Experience>481250</Experience>
+  </Levels>
+  <Levels Level="44">
+    <Rate>1</Rate>
+    <Experience>500000</Experience>
+  </Levels>
+  <Levels Level="45">
+    <Rate>1</Rate>
+    <Experience>518750</Experience>
+  </Levels>
+  <Levels Level="46">
+    <Rate>1</Rate>
+    <Experience>537500</Experience>
+  </Levels>
+  <Levels Level="47">
+    <Rate>1</Rate>
+    <Experience>556250</Experience>
+  </Levels>
+  <Levels Level="48">
+    <Rate>1</Rate>
+    <Experience>575000</Experience>
+  </Levels>
+  <Levels Level="49">
+    <Rate>1</Rate>
+    <Experience>598750</Experience>
+  </Levels>
+  <Levels Level="50">
+    <Rate>1</Rate>
+    <Experience>633760</Experience>
+  </Levels>
+  <Levels Level="51">
+    <Rate>1</Rate>
+    <Experience>664670</Experience>
+  </Levels>
+  <Levels Level="52">
+    <Rate>1</Rate>
+    <Experience>710130</Experience>
+  </Levels>
+  <Levels Level="53">
+    <Rate>1</Rate>
+    <Experience>759000</Experience>
+  </Levels>
+  <Levels Level="54">
+    <Rate>1</Rate>
+    <Experience>785000</Experience>
+  </Levels>
+  <Levels Level="55">
+    <Rate>1</Rate>
+    <Experience>815000</Experience>
+  </Levels>
+  <Levels Level="56">
+    <Rate>1</Rate>
+    <Experience>840000</Experience>
+  </Levels>
+  <Levels Level="57">
+    <Rate>1</Rate>
+    <Experience>870000</Experience>
+  </Levels>
+  <Levels Level="58">
+    <Rate>1</Rate>
+    <Experience>910000</Experience>
+  </Levels>
+  <Levels Level="59">
+    <Rate>1</Rate>
+    <Experience>990000</Experience>
+  </Levels>
+  <Levels Level="60">
+    <Rate>1</Rate>
+    <Experience>1080000</Experience>
+  </Levels>
+  <Levels Level="61">
+    <Rate>1</Rate>
+    <Experience>1180000</Experience>
+  </Levels>
+  <Levels Level="62">
+    <Rate>1</Rate>
+    <Experience>1290000</Experience>
+  </Levels>
+  <Levels Level="63">
+    <Rate>1</Rate>
+    <Experience>1410000</Experience>
+  </Levels>
+  <Levels Level="64">
+    <Rate>1</Rate>
+    <Experience>1540000</Experience>
+  </Levels>
+  <Levels Level="65">
+    <Rate>1</Rate>
+    <Experience>1680000</Experience>
+  </Levels>
+  <Levels Level="66">
+    <Rate>1</Rate>
+    <Experience>1830000</Experience>
+  </Levels>
+  <Levels Level="67">
+    <Rate>1</Rate>
+    <Experience>1990000</Experience>
+  </Levels>
+  <Levels Level="68">
+    <Rate>1</Rate>
+    <Experience>2160000</Experience>
+  </Levels>
+  <Levels Level="69">
+    <Rate>1</Rate>
+    <Experience>2340000</Experience>
+  </Levels>
+  <Levels Level="70">
+    <Rate>1</Rate>
+    <Experience>2530000</Experience>
+  </Levels>
+  <Levels Level="71">
+    <Rate>1</Rate>
+    <Experience>2730000</Experience>
+  </Levels>
+  <Levels Level="72">
+    <Rate>1</Rate>
+    <Experience>2940000</Experience>
+  </Levels>
+  <Levels Level="73">
+    <Rate>1</Rate>
+    <Experience>3160000</Experience>
+  </Levels>
+  <Levels Level="74">
+    <Rate>1</Rate>
+    <Experience>3390000</Experience>
+  </Levels>
+  <Levels Level="75">
+    <Rate>1</Rate>
+    <Experience>3630000</Experience>
+  </Levels>
+  <Levels Level="76">
+    <Rate>1</Rate>
+    <Experience>3880000</Experience>
+  </Levels>
+  <Levels Level="77">
+    <Rate>1</Rate>
+    <Experience>4140000</Experience>
+  </Levels>
+  <Levels Level="78">
+    <Rate>1</Rate>
+    <Experience>4410000</Experience>
+  </Levels>
+  <Levels Level="79">
+    <Rate>1</Rate>
+    <Experience>4690000</Experience>
+  </Levels>
+  <Levels Level="80">
+    <Rate>1</Rate>
+    <Experience>4980000</Experience>
+  </Levels>
+  <Levels Level="81">
+    <Rate>1</Rate>
+    <Experience>5980000</Experience>
+  </Levels>
+  <Levels Level="82">
+    <Rate>1</Rate>
+    <Experience>6980000</Experience>
+  </Levels>
+  <Levels Level="83">
+    <Rate>1</Rate>
+    <Experience>7980000</Experience>
+  </Levels>
+  <Levels Level="84">
+    <Rate>1</Rate>
+    <Experience>8980000</Experience>
+  </Levels>
+  <Levels Level="85">
+    <Rate>1</Rate>
+    <Experience>20000000</Experience>
+  </Levels>
+</ExpTable>

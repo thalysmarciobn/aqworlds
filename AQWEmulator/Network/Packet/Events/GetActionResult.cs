@@ -62,11 +62,11 @@ namespace AQWEmulator.Network.Packet.Events
                     var m = new Dictionary<string, JsonState>();
                     foreach (var target in targets)
                     {
-                        var critChance = ServerCoreValues.Get(Indent.Core.BaseCrit);
-                        var dodgeChance = ServerCoreValues.Get(Indent.Core.BaseDodge);
-                        var missChance = 1.0D - (1.0D - ServerCoreValues.Get(Indent.Core.BaseMiss)) +
+                        var critChance = ServerCoreValues.Values.Configuration.BaseCritical;
+                        var dodgeChance = ServerCoreValues.Values.Configuration.BaseDodge;
+                        var missChance = 1.0D - (1.0D - ServerCoreValues.Values.Configuration.BaseMiss) +
                                          user.UserStats.VThi;
-                        var critValue = ServerCoreValues.Get(Indent.Core.BaseCritValue);
+                        var critValue = ServerCoreValues.Values.Configuration.BaseCritical;
                         var damageEval = new DamageEval("", "", userStats.MaxDmg, userStats.MinDmg,
                             skill.Damage, critChance, dodgeChance, missChance, critValue);
                         var targetType = target.Split(':')[0];

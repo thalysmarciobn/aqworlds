@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public PatternMap()
         {
             Table("hikari_patterns");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.Name).Column("Name");
             Map(x => x.Description).Column("Description");

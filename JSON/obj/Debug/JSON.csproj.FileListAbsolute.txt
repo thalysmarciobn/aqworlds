@@ -75,3 +75,12 @@ C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.csproj.CoreCompil
 C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.csproj.CopyComplete
 C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.dll
 C:\Users\thaly\OneDrive\gitlab\C#\AQWorlds\JSON\obj\Debug\JSON.pdb
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\bin\Debug\JSON.dll
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\bin\Debug\JSON.pdb
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\obj\Debug\JSON.csprojAssemblyReference.cache
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\obj\Debug\JSON.csproj.CoreCompileInputs.cache
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\obj\Debug\JSON.csproj.CopyComplete
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\obj\Debug\JSON.dll
+C:\Users\Thalys\Documents\Gitlab\aqworlds\JSON\obj\Debug\JSON.pdb

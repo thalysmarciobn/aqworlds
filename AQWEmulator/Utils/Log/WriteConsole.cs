@@ -11,7 +11,7 @@ namespace AQWEmulator.Utils.Log
             lock (Lock)
             {
                 Console.Write(DateTime.Now.ToString("HH:mm:ss"));
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(" [INFO] ");
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine(message);

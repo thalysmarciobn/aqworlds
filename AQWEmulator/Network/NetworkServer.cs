@@ -1,54 +1,56 @@
 ﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using AQWEmulator.Network.Packet;
 using AQWEmulator.Network.Pool;
 using AQWEmulator.Network.Sessions;
-using AQWEmulator.Settings;
 using AQWEmulator.Utils.Log;
 using AQWEmulator.World;
 using AQWEmulator.World.Users;
+using AQWEmulator.Xml.Game;
 
 namespace AQWEmulator.Network
 {
     public class NetworkServer
     {
-        private readonly NetworkSettings _settings;
+        public readonly IPEndPoint IpEndPoint;
+        private readonly ServerNetwork _settings;
         
-        private SemaphoreSlim _maxConnectionsEnforcer;
-        private SemaphoreSlim _maxSaeaSendEnforcer;
-        private SemaphoreSlim _maxAcceptOpsEnforcer;
+        private readonly SemaphoreSlim _maxConnectionsEnforcer;
+        private readonly SemaphoreSlim _maxSendEnforcer;
+        private readonly SemaphoreSlim _maxAcceptOpsEnforcer;
         
-        private Socket _listenSocket;
+        private readonly Socket _listenSocket;
         
-        private NetworkAcceptPool _poolOfAcceptEventArgs;
-        private NetworkReceivePool _poolOfRecEventArgs;
-        private NetworkSendPool _poolOfSendEventArgs;
+        private readonly NetworkAcceptPool _poolOfAcceptEventArgs;
+        private readonly NetworkReceivePool _poolOfRecEventArgs;
+        private readonly NetworkSendPool _poolOfSendEventArgs;
 
-        public NetworkServer(NetworkSettings settings)
+        public NetworkServer(ServerNetwork settings)
         {
-            _settings = settings;
-        }
+            _poolOfAcceptEventArgs = new NetworkAcceptPool(settings.MaxSimultaneousAcceptOps, AcceptEventArg_Completed);
+            _poolOfRecEventArgs = new NetworkReceivePool(settings.NumOfSaeaForRec, IO_ReceiveCompleted);
+            _poolOfSendEventArgs = new NetworkSendPool(settings.NumOfSaeaForSend, IO_SendCompleted);
 
-        public NetworkServer Init()
-        {
-            _poolOfAcceptEventArgs = new NetworkAcceptPool(_settings.MaxSimultaneousAcceptOps, AcceptEventArg_Completed);
-            _poolOfRecEventArgs = new NetworkReceivePool(_settings.NumOfSaeaForRec, IO_ReceiveCompleted);
-            _poolOfRecEventArgs = new NetworkReceivePool(_settings.NumOfSaeaForRec, IO_ReceiveCompleted);
-            _poolOfSendEventArgs = new NetworkSendPool(_settings.NumOfSaeaForSend, IO_SendCompleted);
-
-            _maxConnectionsEnforcer = new SemaphoreSlim(_settings.MaxConnections, _settings.MaxConnections);
-            _maxSaeaSendEnforcer = new SemaphoreSlim(_settings.NumOfSaeaForSend, _settings.NumOfSaeaForSend);
-            _maxAcceptOpsEnforcer = new SemaphoreSlim(_settings.MaxSimultaneousAcceptOps, _settings.MaxSimultaneousAcceptOps);
+            _maxConnectionsEnforcer = new SemaphoreSlim(settings.MaxConnections, settings.MaxConnections);
+            _maxSendEnforcer = new SemaphoreSlim(settings.NumOfSaeaForSend, settings.NumOfSaeaForSend);
+            _maxAcceptOpsEnforcer = new SemaphoreSlim(settings.MaxSimultaneousAcceptOps, settings.MaxSimultaneousAcceptOps);
             
-            _listenSocket = new Socket(_settings.Endpoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            return this;
+            IpEndPoint =
+                new IPEndPoint(
+                    settings.Host.Equals("*")
+                        ? IPAddress.Any
+                        : (IPAddress.TryParse(settings.Host, out var address) ? address : IPAddress.Any),
+                    settings.Port);
+            _listenSocket = new Socket(IpEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            _settings = settings;
         }
 
         public void Bind()
         {
-            _listenSocket.Bind(_settings.Endpoint);
+            _listenSocket.Bind(IpEndPoint);
             _listenSocket.Listen(_settings.Backlog);
             StartAccept();
         }
@@ -189,7 +191,7 @@ namespace AQWEmulator.Network
 
         public void SendData(Socket socket, byte[] data)
         {
-            _maxSaeaSendEnforcer.Wait();
+            _maxSendEnforcer.Wait();
             if (!_poolOfSendEventArgs.TryPop(out var sendEventArgs)) return;
             var token = (SendDataToken) sendEventArgs.UserToken;
             token.DataToSend = data;
@@ -296,7 +298,7 @@ namespace AQWEmulator.Network
         private void ReturnSendSaea(SocketAsyncEventArgs args)
         {
             _poolOfSendEventArgs.Push(args);
-            _maxSaeaSendEnforcer.Release();
+            _maxSendEnforcer.Release();
         }
 
         private void HandleBadAccept(SocketAsyncEventArgs acceptEventArgs)
@@ -327,6 +329,9 @@ namespace AQWEmulator.Network
             _poolOfAcceptEventArgs.Dispose();
             _poolOfSendEventArgs.Dispose();
             _poolOfRecEventArgs.Dispose();
+            _maxConnectionsEnforcer.Dispose();
+            _maxSendEnforcer.Dispose();
+            _maxAcceptOpsEnforcer.Dispose();
         }
     }
 }

@@ -65,16 +65,16 @@ namespace AQWEmulator.World.Rooms
             base.Die();
             var monsterModel = MonsterModel;
             var monsterAreaMonsterModel = AreaMonsterModel;
-            var expDrop = monsterModel.Experience * ServerCoreValues.Settings.ExpRate;
-            var goldDrop = monsterModel.Gold * ServerCoreValues.Settings.GoldRate;
-            var repDrop = monsterModel.Reputation * ServerCoreValues.Settings.RepRate;
-            var coinDrop = monsterModel.Coin * ServerCoreValues.Settings.CoinRate;
-            var classDrop = monsterModel.ClassPoint * ServerCoreValues.Settings.ClassRate;
+            var expDrop = monsterModel.Experience * Emulator.Settings.Configuration.ServerRates.Experience;
+            var goldDrop = monsterModel.Gold * Emulator.Settings.Configuration.ServerRates.Gold;
+            var repDrop = monsterModel.Reputation * Emulator.Settings.Configuration.ServerRates.Reputation;
+            var coinDrop = monsterModel.Coin * Emulator.Settings.Configuration.ServerRates.Coin;
+            var classDrop = monsterModel.ClassPoint * Emulator.Settings.Configuration.ServerRates.Class;
             foreach (var connection in Targets)
             {
                 var now = DateTime.Now;
                 var character = connection.Character;
-                var coreExp = ServerCoreValues.GetExpToLevel(character.Level);
+                var coreExp = ServerCoreValues.ExpTable.Configuration.Levels.FirstOrDefault(x => x.Level == character.Level);
                 var levelUp = false;
                 var expBoost = character.ExpBoostExpire >= now;
                 var goldBoost = character.GoldBoostExpire >= now;
@@ -82,12 +82,12 @@ namespace AQWEmulator.World.Rooms
                 var coinBoost = character.CoinBoostExpire >= now;
                 var classBoost = character.CpBoostExpire >= now;
                 var classRank = Stats.GetRankFromPoints(connection.UserClass.CharacterItem.Quantity);
-                var wonExp = character.Experience + (int) (expDrop * coreExp.Multi);
+                var wonExp = character.Experience + (int) (expDrop * coreExp.Experience);
                 var wonCoin = character.Coins + coinDrop;
                 var wonGold = character.Gold + goldDrop;
                 var wonClass = connection.UserClass.CharacterItem.Quantity + classDrop;
                 var currentLevel = character.Level;
-                if (expDrop > 0 && currentLevel < ServerCoreValues.Get(Indent.Core.LevelMax) && coreExp != null)
+                if (expDrop > 0 && currentLevel < ServerCoreValues.Values.Configuration.LevelMax && coreExp != null)
                 {
                     Console.WriteLine(wonExp + " : " + coreExp.Experience);
                     while (wonExp >= coreExp.Experience)
@@ -105,16 +105,16 @@ namespace AQWEmulator.World.Rooms
                 }
 
                 if (coinDrop > 0) character.Coins = wonCoin;
-                if (goldDrop > 0 && wonGold <= ServerCoreValues.Settings.LimitGold) character.Gold = wonGold;
+                if (goldDrop > 0 && wonGold <= Emulator.Settings.Configuration.ServerLimits.Gold) character.Gold = wonGold;
                 if (classRank != 10 && classDrop > 0) connection.UserClass.CharacterItem.Quantity = wonClass;
                 //SessionFactory.Update(character);
                 //SessionFactory.Update(connection.UserClass.CharacterItem);
                 if (classRank != 10 && classDrop > 0 && Stats.GetRankFromPoints(wonClass) > classRank)
                     JsonHelper.LoadSkills(connection);
                 var json = new JsonAddGoldExp {id = monsterAreaMonsterModel.MonMapId};
-                if (wonGold <= ServerCoreValues.Settings.LimitGold) json.intGold = goldDrop;
-                if (wonCoin <= ServerCoreValues.Settings.LimitCoin) json.intCoin = coinDrop;
-                if (expDrop > 0 && currentLevel < ServerCoreValues.Get(Indent.Core.LevelMax))
+                if (wonGold <= Emulator.Settings.Configuration.ServerLimits.Gold) json.intGold = goldDrop;
+                if (wonCoin <= Emulator.Settings.Configuration.ServerLimits.Coin) json.intCoin = coinDrop;
+                if (expDrop > 0 && currentLevel < ServerCoreValues.Values.Configuration.LevelMax)
                     json.intExp = levelUp ? wonExp : expDrop;
                 if (classRank != 10 && classDrop > 0) json.iCP = classDrop;
                 if (monsterModel.FactionId > 0)
@@ -131,7 +131,7 @@ namespace AQWEmulator.World.Rooms
                             new JsonLevelUp
                             {
                                 intLevel = currentLevel,
-                                intExpToLevel = ServerCoreValues.GetExpToLevel(currentLevel).Experience
+                                intExpToLevel = ServerCoreValues.ExpTable.Configuration.Levels.Where(x => x.Level == currentLevel).Select(x => x.Experience).FirstOrDefault()
                             }), connection);
                 connection.RemoveTarget(this);
             }

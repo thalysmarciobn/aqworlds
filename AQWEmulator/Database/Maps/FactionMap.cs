@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public FactionMap()
         {
             Table("hikari_factions");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.Name).Column("Name");
         }

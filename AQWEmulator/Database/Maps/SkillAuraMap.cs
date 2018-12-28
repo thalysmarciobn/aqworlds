@@ -8,7 +8,6 @@ namespace AQWEmulator.Database.Maps
         public SkillAuraMap()
         {
             Table("hikari_skills_auras");
-            Not.LazyLoad();
             Id(x => x.Id).Column("id");
             Map(x => x.SkillId).Column("Skill_ID");
             Map(x => x.AuraId).Column("Aura_ID");
